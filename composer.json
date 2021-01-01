@@ -11,7 +11,8 @@
         }
     },
     "require": {
-        "anax/anax-ramverk1-me": "^1.0.0"
+        "anax/anax-ramverk1-me": "^1.0.0",
+        "anax/database": "^2.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^7"

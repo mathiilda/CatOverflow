@@ -10,7 +10,6 @@ class IndexController implements ContainerInjectableInterface
     use ContainerInjectableTrait;
 
 
-
     /**
      * @var string $db a sample member variable that gets initialised
      */
@@ -18,8 +17,8 @@ class IndexController implements ContainerInjectableInterface
 
     public function initialize() : void
     {
-        // Use to initialise member variables.
-        $this->db = "active";
+        $this->db = $this->di->get("db");
+        $this->db->connect();
     }
 
     public function indexAction()
@@ -27,12 +26,43 @@ class IndexController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $title = "CatOverflow";
 
-        $data = [];
+        $data = [
+            "signIn" => $_GET["signIn"] ?? false,
+            "failSignIn" => $_GET["signInFail"] ?? false,
+            "fail" => $_GET["fail"] ?? false 
+        ];
 
         $page->add("cat/index", $data);
 
         return $page->render([
             "title" => $title,
         ]);
+    }
+
+    public function signUpInAction()
+    {
+        var_dump($_POST);
+        $user = $_POST["user"];
+        $email = $_POST["email"];
+        $pass = $_POST["pass"];
+
+        $sql = "SELECT * FROM Users;";
+        $result = $this->db->executeFetchAll($sql);
+        $database = new databaseHandler();
+
+        if ($_POST["action"] == "Sign in") {
+            if (!$database->checkUserPassword($result)) {
+                return $this->di->response->redirect("index?signIn=true&signInFail=true");
+            }
+        } else {
+            if ($database->checkUser($result)) {
+               return $this->di->response->redirect("index?fail=true");
+            }
+
+            $sql = "INSERT INTO Users (username, email, password) VALUES (?, ?, ?);";
+            $this->db->executeFetchAll($sql, [$user, $email, $pass]);
+        }
+
+        return $this->di->response->redirect("home");
     }
 }
