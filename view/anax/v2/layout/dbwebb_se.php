@@ -79,7 +79,7 @@ $route = "route-" . str_replace("/", "-", $di->get("request")->getRoute());
 
 </head>
 
-<body <?= classList($bodyClass, $route) ?>>
+<body class="bg-gray-100" <?= classList($bodyClass, $route) ?>>
 
 <!-- wrapper around all items on page -->
 <div class="wrap-all">

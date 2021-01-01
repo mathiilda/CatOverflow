@@ -5,6 +5,30 @@
  * standard parts of the page, such as header, navbar, footer, stylesheets,
  * javascripts and more.
  */
+
+if ($_SERVER['REQUEST_URI'] == "/dbwebb-extra/ramverk1/me/kmom10/stackcat/htdocs/" || $_SERVER['REQUEST_URI'] == "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/stackcat/htdocs/") {
+    return [
+        "layout" => [
+            "region" => "layout",
+            "template" => "anax/v2/layout/dbwebb_se",
+            "data" => [
+                "baseTitle" => " | ramverk1",
+                "bodyClass" => null,
+                "favicon" => "favicon.ico",
+                "htmlClass" => null,
+                "lang" => "sv",
+                "stylesheets" => [
+                    // "css/dbwebb-se.min.css",
+                    "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+                ],
+                "javascripts" => [
+                    "js/responsive-menu.js",
+                ],
+            ],
+        ],
+    ];
+}
+
 return [
     // This layout view is the base for rendering the page, it decides on where
     // all the other views are rendered.
@@ -18,7 +42,8 @@ return [
             "htmlClass" => null,
             "lang" => "sv",
             "stylesheets" => [
-                "css/dbwebb-se.min.css",
+                // "css/dbwebb-se.min.css",
+                "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
             ],
             "javascripts" => [
                 "js/responsive-menu.js",
