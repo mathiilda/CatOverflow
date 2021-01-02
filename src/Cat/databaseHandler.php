@@ -41,10 +41,10 @@ class databaseHandler
         return false;
     }
 
-    // public function editUser()
-    // {
-    //     //Redigera profil
-    // }
+    public function editUser()
+    {
+        //Redigera profil
+    }
 
     // public function userInformation()
     // {

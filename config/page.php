@@ -12,7 +12,7 @@ $urlLocalIndex = "/dbwebb-extra/ramverk1/me/kmom10/stackcat/htdocs/index";
 $urlServer = "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/stackcat/htdocs/";
 $urlServerIndex = "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/stackcat/htdocs/index";
 
-if ($url == $urlLocal || $url == $urlLocalIndex || $url == $urlServer || $url = $urlServerIndex) {
+if ($url == $urlLocal || $url == $urlLocalIndex || $url == $urlServer || $url == $urlServerIndex) {
     return [
         "layout" => [
             "region" => "layout",
@@ -42,13 +42,14 @@ return [
         "region" => "layout",
         "template" => "anax/v2/layout/dbwebb_se",
         "data" => [
-            "baseTitle" => " | ramverk1",
+            "baseTitle" => " | CatOverflow",
             "bodyClass" => null,
-            "favicon" => "favicon.ico",
+            "favicon" => "img/favicon.png",
             "htmlClass" => null,
             "lang" => "sv",
             "stylesheets" => [
                 // "css/dbwebb-se.min.css",
+                "css/addition.css",
                 "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
             ],
             "javascripts" => [
@@ -61,21 +62,12 @@ return [
     "views" => [
         [
             "region" => "header-col-1",
-            "template" => "anax/v2/header/site_logo",
-            "data" => [
-                "class" => "large",
-                "siteLogo"      => "image/theme/leaf_256x256.png",
-                "siteLogoAlt"   => "Löv",
-            ],
-        ],
-        [
-            "region" => "header-col-1",
             "template" => "anax/v2/header/site_logo_text",
             "data" => [
-                "homeLink"      => "",
-                "siteLogoText"  => "ramverk1",
-                "siteLogoTextIcon" => "image/theme/leaf_40x40.png",
-                "siteLogoTextIconAlt" => "Löv-bild",
+                "homeLink"      => "home",
+                "siteLogoText"  => "CatOverflow",
+                "siteLogoTextIcon" => "image/favicon.png?width=60",
+                "siteLogoTextIconAlt" => "Cat-logo",
             ],
         ],
         [
@@ -85,13 +77,13 @@ return [
                 "navbarConfig" => require __DIR__ . "/navbar/header.php",
             ],
         ],
-        [
-            "region" => "header-col-3",
-            "template" => "anax/v2/navbar/responsive_submenus",
-            "data" => [
-                "navbarConfig" => require __DIR__ . "/navbar/responsive.php",
-            ],
-        ],
+        // [
+        //     "region" => "header-col-3",
+        //     "template" => "anax/v2/navbar/responsive_submenus",
+        //     "data" => [
+        //         "navbarConfig" => require __DIR__ . "/navbar/responsive.php",
+        //     ],
+        // ],
         [
             "region" => "footer",
             "template" => "anax/v2/columns/multiple_columns",

@@ -5,48 +5,46 @@
 return [
     // Use for styling the menu
     "wrapper" => null,
-    "class" => "my-navbar rm-default rm-desktop",
+    "class" => "my-navbar rm-default rm-desktop flex flex-row",
  
     // Here comes the menu items
     "items" => [
         [
-            "text" => "Hem",
-            "url" => "",
-            "title" => "Första sidan, börja här.",
+            "text" => "Home",
+            "url" => "home",
+            "title" => "Home.",
         ],
         [
-            "text" => "Redovisning",
-            "url" => "redovisning",
-            "title" => "Redovisningstexter från kursmomenten.",
-            "submenu" => [
-                "items" => [
-                    [
-                        "text" => "Kmom01",
-                        "url" => "redovisning/kmom01",
-                        "title" => "Redovisning för kmom01.",
-                    ],
-                    [
-                        "text" => "Kmom02",
-                        "url" => "redovisning/kmom02",
-                        "title" => "Redovisning för kmom02.",
-                    ],
-                ],
-            ],
+            "text" => "Questions",
+            "url" => "questions",
+            "title" => "All questions.",
         ],
         [
-            "text" => "Om",
-            "url" => "om",
-            "title" => "Om denna webbplats.",
+            "text" => "Answers",
+            "url" => "answers",
+            "title" => "All answers.",
         ],
         [
-            "text" => "Styleväljare",
-            "url" => "style",
-            "title" => "Välj stylesheet.",
+            "text" => "Tags",
+            "url" => "tags",
+            "title" => "All tags.",
         ],
         [
-            "text" => "Verktyg",
-            "url" => "verktyg",
-            "title" => "Verktyg och möjligheter för utveckling.",
+            "text" => "Users",
+            "url" => "users",
+            "title" => "All users.",
+        ],
+        [
+            "text" => "About",
+            "url" => "about",
+            "title" => "About this webpage.",
+        ],
+        [
+            "text" => $_POST["user"] ?? "My profile",
+            "url" => "profile",
+            "title" => "My profile.",
+            "img" => "img/favicon.png",
+            "imgAlt" => "My profile-picture."
         ],
     ],
 ];

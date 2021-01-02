@@ -5,7 +5,7 @@ namespace mabw\Cat;
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 
-class IndexController implements ContainerInjectableInterface
+class HomeController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -24,11 +24,9 @@ class IndexController implements ContainerInjectableInterface
     public function indexAction()
     {
         $page = $this->di->get("page");
-        $title = "CatOverflow";
+        $title = "Home";
 
-        $data = [
-            "signIn" => $_GET["signIn"] ?? false 
-        ];
+        $data = [];
 
         $page->add("cat/home", $data);
 

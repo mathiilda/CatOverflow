@@ -41,9 +41,8 @@ class IndexController implements ContainerInjectableInterface
 
     public function signUpInAction()
     {
-        var_dump($_POST);
         $user = $_POST["user"];
-        $email = $_POST["email"];
+        $email = $_POST["email"] ?? null;
         $pass = $_POST["pass"];
 
         $sql = "SELECT * FROM Users;";

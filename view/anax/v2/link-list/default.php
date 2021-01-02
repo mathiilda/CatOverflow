@@ -12,7 +12,6 @@ namespace Anax\View;
 
 
 ?><ul>
-
     <?php foreach ($links as $link) :
         $url  = url($link["url"]);
         $text = $link["text"];
@@ -20,7 +19,9 @@ namespace Anax\View;
             ? " title=\"${link["title"]}\""
             : null;
         ?>
-        <li><a href="<?= $url ?>"<?= $title ?>><?= $text ?></a></li>
+        <li>
+            <a href="<?= $url ?>"<?= $title ?>><?= $text ?></a>
+        </li>
     <?php endforeach; ?>
 
 </ul>

@@ -18,6 +18,8 @@ namespace Anax\View;
             <img src="<?= asset($siteLogoTextIcon) ?>" alt="<?= $siteLogoTextIconAlt ?>">
         </span>
         <?php endif; ?>
+    </a>
+    <a href="<?= url($homeLink) ?>">
         <?= $siteLogoText ?>
     </a>
 </span>
