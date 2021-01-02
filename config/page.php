@@ -29,6 +29,7 @@ if ($url == $urlLocal || $url == $urlLocalIndex || $url == $urlServer || $url ==
                 ],
                 "javascripts" => [
                     "js/responsive-menu.js",
+                    "https://kit.fontawesome.com/cf84b74235.js"
                 ],
             ],
         ],
@@ -54,6 +55,7 @@ return [
             ],
             "javascripts" => [
                 "js/responsive-menu.js",
+                "https://kit.fontawesome.com/cf84b74235.js"
             ],
         ],
     ],

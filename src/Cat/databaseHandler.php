@@ -43,9 +43,24 @@ class DatabaseHandler
         return false;
     }
 
-    public function editUser()
+    public function createTagsString()
     {
-        //Redigera profil
+        if (!isset($_POST["tags"])) {
+            return "";
+        }
+
+        $tags = $_POST["tags"];
+        $tagsStr = "";
+
+        for ($i=0; $i < count($tags); $i++) {
+            if ($i+1 == count($tags)) {
+                $tagsStr .= $tags[$i];
+            } else {
+                $tagsStr .= $tags[$i] . ",";
+            }
+        }
+
+        return $tagsStr;
     }
 
     // public function userInformation()

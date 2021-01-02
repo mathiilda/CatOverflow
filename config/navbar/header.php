@@ -19,11 +19,11 @@ return [
             "url" => "questions",
             "title" => "All questions.",
         ],
-        [
-            "text" => "Answers",
-            "url" => "answers",
-            "title" => "All answers.",
-        ],
+        // [
+        //     "text" => "Answers",
+        //     "url" => "answers",
+        //     "title" => "All answers.",
+        // ],
         [
             "text" => "Tags",
             "url" => "tags",
