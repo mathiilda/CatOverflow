@@ -41,7 +41,7 @@ return [
         ],
         [
             "text" => $_POST["user"] ?? "My profile",
-            "url" => "profile",
+            "url" => "profile?user=" . $_SESSION["user"],
             "title" => "My profile.",
             "img" => "img/favicon.png",
             "imgAlt" => "My profile-picture."

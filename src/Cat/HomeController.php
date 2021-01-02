@@ -15,10 +15,15 @@ class HomeController implements ContainerInjectableInterface
      */
     private $db = "not active";
 
-    public function initialize() : void
+    public function initialize()
     {
         $this->db = $this->di->get("db");
         $this->db->connect();
+        $auth = new AuthHandler();
+
+        if (!$auth->signedIn()) {
+            return $this->di->response->redirect("index");
+        }
     }
 
     public function indexAction()

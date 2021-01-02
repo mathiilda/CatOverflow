@@ -1,7 +1,7 @@
 <div class="w-10/12 mt-44 mr-auto ml-auto bg-gray-100 p-8 rounded shadow md:w-1/2">
 
     <!-- Error handling. -->
-    <?php if ($data["failSignIn"])  : ?>
+    <?php if ($data["failSignIn"]) : ?>
         <div class="bg-red-400 w-2/3 rounded shadow mr-auto ml-auto p-2 text-center">
             <p>Something went wrong! Try a different password or another username.</p>
         </div><br><br>
@@ -43,7 +43,7 @@
 
             <?php if ($data["signIn"] == false) : ?>
                 <input name="action" class="w-full md:w-6/12 bg-blue-300 p-2 rounded shadow float-right hover:bg-blue-400" type="submit" value="Sign up">
-            <?php else: ?>
+            <?php else : ?>
                 <input name="action" class="w-full md:w-6/12 bg-blue-300 p-2 rounded shadow float-right hover:bg-blue-400" type="submit" value="Sign in">
             <?php endif; ?>
         </form>

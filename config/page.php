@@ -7,10 +7,10 @@
  */
 
 $url = strtok($_SERVER["REQUEST_URI"], '?');
-$urlLocal = "/dbwebb-extra/ramverk1/me/kmom10/stackcat/htdocs/";
-$urlLocalIndex = "/dbwebb-extra/ramverk1/me/kmom10/stackcat/htdocs/index";
-$urlServer = "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/stackcat/htdocs/";
-$urlServerIndex = "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/stackcat/htdocs/index";
+$urlLocal = "/dbwebb-extra/ramverk1/me/kmom10/CatOverflow/htdocs/";
+$urlLocalIndex = "/dbwebb-extra/ramverk1/me/kmom10/CatOverflow/htdocs/index";
+$urlServer = "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/CatOverflow/htdocs/";
+$urlServerIndex = "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/CatOverflow/htdocs/index";
 
 if ($url == $urlLocal || $url == $urlLocalIndex || $url == $urlServer || $url == $urlServerIndex) {
     return [

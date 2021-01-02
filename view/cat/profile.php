@@ -3,16 +3,18 @@
         <div class="flex flex-row border-b-2 border-gray-200 pb-6 mb-4">
             <img class="rounded-full" src="<?= $data["gravatar"]?>" alt="gravatar">
             <div class="ml-4">
-                <h2 class="text-xl font-medium border-b-2 border-blue-300 mb-2"><?= $_SESSION["user"] ?></h2>
-                <p>🐱 000</p>
+                <h2 class="text-xl font-medium border-b-2 border-blue-300 mb-2"><?= $data["currentUser"] ?></h2>
+                <p>🐱 <?= $data["points"] ?></p>
             </div>
         </div>
-        <p class="mb-2">
-            <a href="profile/edit">🖊️ Edit account</a>
-        </p>
-        <p>
-            <a href="profile/logOut">🐾 Log out</a>
-        </p>
+        <?php if ($data["currentUser"] == $_SESSION["user"]) : ?>
+            <p class="mb-2">
+                <a href="profile/edit">🖊️ Edit account</a>
+            </p>
+            <p>
+                <a href="profile/logOut">🐾 Log out</a>
+            </p>
+        <?php endif; ?>
     </div>
     <div class="w-2/3 p-8">
         <?php if ($data["edit"]) : ?>

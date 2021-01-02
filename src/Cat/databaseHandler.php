@@ -2,19 +2,21 @@
 
 namespace mabw\Cat;
 
-class databaseHandler
+class DatabaseHandler
 {
     // Kollar om användaren finns sen tidigare, gör den det returneras true
     // annars false.
-    public function checkUser($result)
+    public function checkUser($result, $saveInSession=true)
     {
         $user = $_POST["user"];
 
         foreach ($result as $u) {
             if ($u->username == $user) {
-                $_SESSION["user"] = $user;
-                $_SESSION["email"] = $u->email;
-                $_SESSION["userId"] = $u->id;
+                if ($saveInSession) {
+                    $_SESSION["user"] = $user;
+                    $_SESSION["email"] = $u->email;
+                    $_SESSION["userId"] = $u->id;
+                }
                 return true;
             }
         }
@@ -23,7 +25,7 @@ class databaseHandler
     }
 
     // Kollar om användaren finns sen tidigare, gör den det returneras true
-    // annars false. Kollar även lösenordet. 
+    // annars false. Kollar även lösenordet.
     public function checkUserPassword($result)
     {
         $user = $_POST["user"];

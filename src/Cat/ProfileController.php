@@ -15,20 +15,32 @@ class ProfileController implements ContainerInjectableInterface
      */
     private $db = "not active";
 
-    public function initialize() : void
+    public function initialize()
     {
         $this->db = $this->di->get("db");
         $this->db->connect();
+        $auth = new AuthHandler();
+
+        if (!$auth->signedIn()) {
+            return $this->di->response->redirect("index");
+        }
     }
 
     public function indexAction()
     {
         $page = $this->di->get("page");
         $title = "My profile";
+        $user = $_GET["user"] ?? $_SESSION["user"];
+        $sql = "SELECT email, points FROM Users WHERE username = ?;";
+        $res = $this->db->executeFetchAll($sql, [$user])[0];
+        $email = $res->email;
+        $points = $res->points;
 
         $data = [
-            "gravatar" => "https://www.gravatar.com/avatar/" . md5(strtolower(trim($_SESSION["email"]))),
-            "edit" => $_GET["edit"] ?? false
+            "gravatar" => "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))),
+            "edit" => $_GET["edit"] ?? false,
+            "currentUser" => $user,
+            "points" => $points
         ];
 
         $page->add("cat/profile", $data);
@@ -59,7 +71,7 @@ class ProfileController implements ContainerInjectableInterface
         $email = $_POST["email"];
         $pass = $_POST["pass"] ?? null;
 
-        if ($pass = null) {
+        if ($pass == null) {
             $sql = "UPDATE Users SET email = ? WHERE username = ?;";
             $this->db->executeFetchAll($sql, [$email, $_SESSION["user"]]);
         } else {
