@@ -15,28 +15,28 @@
             <div class="w-full">
                 <!-- HEADER -->
                 <div class="border-b-2 border-gray-200 flex flex-row justify-between w-full mb-4">
-                    <a href="questions/single?id=<?= $data["res"]->id ?>">
-                        <h2 class="text-xl"><?= $data["res"]->title ?></h2>
+                    <a href="questions/single?id=<?= htmlentities($data["res"]->id) ?>">
+                        <h2 class="text-xl"><?= htmlentities($data["res"]->title) ?></h2>
                     </a>
                     <div class="flex flex-row">
                         <?php foreach ($t as $subject) : ?>
                             <p class="mr-6"><i class="fas fa-hashtag"></i> <?= $subject ?></p>
                         <?php endforeach; ?>
-                        <p><?= gmdate("Y-m-d",$data["res"]->date) ?></p>
+                        <p><?= gmdate("Y-m-d",htmlentities($data["res"]->date)) ?></p>
                     </div>
                 </div>
-                <p><?= $data["res"]->question ?></p>
-                <a class="float-right mt-4 border-b-2 border-blue-300" href="profile?user=<?= $data["res"]->author ?>">Author: <?= $data["res"]->author ?></a>
+                <p><?= htmlentities($data["res"]->question) ?></p>
+                <a class="float-right mt-4 border-b-2 border-blue-300" href="profile?user=<?= htmlentities($data["res"]->author) ?>">Author: <?= htmlentities($data["res"]->author) ?></a>
             </div>
         </div>
 
         <div class="rounded shadow p-8 flex flex-row w-4/12 mb-8 justify-center">
             <form action="answer" method="POST">
-                <h2 class="font-semibold">Do you have a smart answer to <?= $data["res"]->author . "'s" ?> question? Write it down below!</h2>
+                <h2 class="font-semibold">Do you have a smart answer to <?= htmlentities($data["res"]->author) . "'s" ?> question? Write it down below!</h2>
 
                 <textarea name="text" rows="5" class="border-solid border-blue-300 border-b-2 bg-gray-100 w-full" required></textarea>
 
-                <input type="hidden" name="id" value="<?= $data["res"]->id ?>">
+                <input type="hidden" name="id" value="<?= htmlentities($data["res"]->id) ?>">
 
                 <input name="type" class="w-full md:w-4/12 bg-blue-300 p-2 rounded shadow float-right hover:bg-blue-400" type="submit" value="Answer">
             </form>
@@ -53,8 +53,8 @@
                     <i class="fas fa-check text-green-500 "></i>
                 <?php else : ?>
                     <form action="accept" method="POST">
-                        <input type="hidden" name="id" value="<?= $answer->id ?>">
-                        <input type="hidden" name="questionId" value="<?= $answer->questionId ?>">
+                        <input type="hidden" name="id" value="<?= htmlentities($answer->id) ?>">
+                        <input type="hidden" name="questionId" value="<?= htmlentities($answer->questionId) ?>">
                         <button type="submit">
                             <i class="fas fa-check"></i>
                         </button>
@@ -62,8 +62,8 @@
                 <?php endif; ?>
             </div>
             <div class="w-full">
-                <p><?= $answer->answer ?></p>
-                <a class="float-right mt-4 border-b-2 border-blue-300" href="../profile?user=<?= $answer->author ?>">Author: <?= $answer->author ?></a>
+                <p><?= htmlentities($answer->answer) ?></p>
+                <a class="float-right mt-4 border-b-2 border-blue-300" href="../profile?user=<?= htmlentities($answer->author) ?>">Author: <?= htmlentities($answer->author) ?></a>
             </div>
         </div>
     <?php endforeach; ?>

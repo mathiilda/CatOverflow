@@ -44,17 +44,17 @@
             <div class="w-full">
                 <!-- HEADER -->
                 <div class="border-b-2 border-gray-200 flex flex-row justify-between w-full mb-4">
-                    <a href="questions/single?id=<?= $q->id ?>">
-                        <h2 class="text-xl"><?= $q->title ?></h2>
+                    <a href="questions/single?id=<?= htmlentities($q->id) ?>">
+                        <h2 class="text-xl"><?= htmlentities($q->title) ?></h2>
                     </a>
                     <div class="flex flex-row">
                         <?php foreach ($t as $subject) : ?>
-                            <p class="mr-6"><i class="fas fa-hashtag"></i> <?= $subject ?></p>
+                            <p class="mr-6"><i class="fas fa-hashtag"></i> <?= htmlentities($subject) ?></p>
                         <?php endforeach; ?>
-                        <p class="mr-6"><?= gmdate("Y-m-d",$q->date) ?></p>
+                        <p class="mr-6"><?= gmdate("Y-m-d", htmlentities($q->date)) ?></p>
                         <?php if ($_SESSION["user"] == $q->author) : ?>
                             <form action="questions/delete" method="POST">
-                                <input type="hidden" name="id" value="<?= $q->id ?>">
+                                <input type="hidden" name="id" value="<?= htmlentities($q->id) ?>">
                                 <button type="submit">
                                     <p><i class="fas fa-trash"></i></p>
                                 </button>
@@ -62,8 +62,8 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                <p><?= $q->question ?></p>
-                <a class="float-right mt-4 border-b-2 border-blue-300" href="profile?user=<?= $q->author ?>">Author: <?= $q->author ?></a>
+                <p><?= htmlentities($q->question) ?></p>
+                <a class="float-right mt-4 border-b-2 border-blue-300" href="profile?user=<?= htmlentities($q->author) ?>">Author: <?= htmlentities($q->author) ?></a>
             </div>
         </div>
     <?php endforeach; ?>
