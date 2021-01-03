@@ -30,22 +30,26 @@ class ProfileController implements ContainerInjectableInterface
     {
         $page = $this->di->get("page");
         $title = "My profile";
+
         $user = $_GET["user"] ?? $_SESSION["user"];
         $sql = "SELECT email, points FROM Users WHERE username = ?;";
         $res = $this->db->executeFetchAll($sql, [$user])[0];
+
         $email = $res->email;
         $points = $res->points;
+
+        $sql = "SELECT * FROM Questions WHERE author = ?";
 
         $data = [
             "gravatar" => "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))),
             "edit" => $_GET["edit"] ?? false,
             "currentUser" => $user,
-            "points" => $points
+            "points" => $points,
+            "view" => $_GET["view"] ?? "q",
+            "questions" => $this->db->executeFetchAll($sql, [$user])
         ];
 
         $page->add("cat/profile", $data);
-
-        $_GET["edit"] = false;
 
         return $page->render([
             "title" => $title,

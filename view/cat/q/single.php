@@ -1,4 +1,11 @@
+<?php use \Michelf\MarkdownExtra; ?>
+
 <div class="w-8/12 md:w-2/3 mt-20 mb-20 mr-auto ml-auto bg-gray-100 rounded shadow p-8 overflow-auto">
+
+    <div class="w-full pb-8">
+        <a href="../questions" class="p-2 mr-2 rounded shadow"><i class="fas fa-arrow-left"></i> Go back to overview</a>
+    </div>
+
     <!-- ERROR-HANDLING -->
     <?php if ($data["fail"]) : ?>
         <div class="bg-red-400 p-2 text-center rounded shadow mb-8">
@@ -9,10 +16,6 @@
             <p>Oops! An answer has already been marked as the correct one.</p>
         </div>
     <?php endif; ?>
-
-    <div class="w-full pb-8">
-        <a href="../questions" class="p-2 mr-2 rounded shadow"><i class="fas fa-arrow-left"></i> Go back to overview</a>
-    </div>
 
 
     <!-- QUESTION -->
@@ -32,7 +35,7 @@
                         <p><?= gmdate("Y-m-d", htmlentities($data["res"]->date)) ?></p>
                     </div>
                 </div>
-                <p><?= htmlentities($data["res"]->question) ?></p>
+                <p><?= MarkdownExtra::defaultTransform($data["res"]->question) ?></p>
                 <a class="float-right mt-4 border-b-2 border-blue-300" href="profile?user=<?= htmlentities($data["res"]->author) ?>">Author: <?= htmlentities($data["res"]->author) ?></a>
             </div>
         </div>
@@ -55,14 +58,16 @@
     <!-- COMMENTS -->
     <?php foreach($data["comments"] as $comment) : ?>
         <?php if ($comment->answerId == null) : ?>
-            <div class="rounded shadow p-4 w-11/12 mb-4 float-right bg-gray-100 border-l-2 border-blue-300 bg-blue-100">
-                <p class="w-full text-sm"> <?= $comment->comment ?>
-                <a class="border-b-2 border-blue-300" href="../profile?user=<?= $comment->author ?>"> - <?= $comment->author ?></a>
+            <div class="rounded shadow p-4 w-full mb-4 bg-gray-100 border-l-2 border-blue-300 bg-blue-100">
+                <p class="w-full text-sm"> <?= MarkdownExtra::defaultTransform($comment->comment) ?>
+                    <a class="border-b-2 border-blue-300" href="../profile?user=<?= $comment->author ?>"> - <?= $comment->author ?></a>
                 </p>
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
-    
+
+
+
     <!-- HEADER/CONTROLLS -->
     <div class="w-full border-b-2 border-gray-200 flex flex-row justify-between pb-4 pt-16">
         <h2 class="text-2xl mt-auto mb-auto">Answers:</h2>
@@ -96,7 +101,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="w-full">
-                    <p><?= htmlentities($answer->answer) ?></p>
+                    <p><?= MarkdownExtra::defaultTransform($answer->answer) ?></p>
                     <a class="float-right mt-4 border-b-2 border-blue-300" href="../profile?user=<?= htmlentities($answer->author) ?>">Author: <?= htmlentities($answer->author) ?></a>
                 </div>
             </div>
@@ -121,8 +126,8 @@
         <div class="w-full overflow-auto">
         <?php foreach($data["comments"] as $comment) : ?>
             <?php if ($comment->answerId == $answer->id) : ?>
-                <div class="rounded shadow p-4 w-11/12 mb-4 float-right bg-gray-100 border-l-2 border-blue-300 bg-blue-100">
-                    <p class="w-full text-sm"> <?= $comment->comment ?>
+                <div class="rounded shadow p-4 w-full mb-4 float-right bg-gray-100 border-l-2 border-blue-300 bg-blue-100">
+                    <p class="w-full text-sm"> <?= MarkdownExtra::defaultTransform($comment->comment) ?>
                     <a class="border-b-2 border-blue-300" href="../profile?user=<?= $comment->author ?>"> - <?= $comment->author ?></a>
                     </p>
                 </div>

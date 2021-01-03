@@ -9,22 +9,22 @@
             <label for="">Tags:</label><br>
             <div class="flex flex-row justify-between">
                 <div>
-                    <input class="mt-4" type="checkbox" name="tags[]" value="Vet">
-                    <label for="vet">Vet</label><br>
+                    <input class="mt-4" type="checkbox" name="tags[]" value="Health">
+                    <label for="health">Health</label><br>
 
                     <input class="mt-4" type="checkbox" name="tags[]" value="Toys">
                     <label for="toys">Toys</label><br>
                 </div>
                 <div>
-                <input class="mt-4" type="checkbox" name="tags[]" value="Food">
+                    <input class="mt-4" type="checkbox" name="tags[]" value="Food">
                     <label for="food">Food</label><br>
 
-                    <input class="mt-4" type="checkbox" name="tags[]" value="Health">
-                    <label for="health">Health</label><br>
-                </div>
-                <div>
                     <input class="mt-4" type="checkbox" name="tags[]" value="Breeding">
                     <label for="breeding">Breeding</label><br>
+                </div>
+                <div>
+                    <input class="mt-4" type="checkbox" name="tags[]" value="Kitten">
+                    <label for="kitten">Kitten</label><br>
 
                     <input class="mt-4" type="checkbox" name="tags[]" value="Other">
                     <label for="other">Other</label><br>

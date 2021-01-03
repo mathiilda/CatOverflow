@@ -62,9 +62,4 @@ class DatabaseHandler
 
         return $tagsStr;
     }
-
-    // public function userInformation()
-    // {
-    //     //Ta fram användar-information
-    // }
 }
