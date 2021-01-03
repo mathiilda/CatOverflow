@@ -152,11 +152,11 @@ class QuestionsController implements ContainerInjectableInterface
             $sqlAnswered = "UPDATE Questions SET answered = 1 WHERE id = ?";
             $this->db->executeFetchAll($sqlAnswered, [$questionId]);
         } else if ($type == "Comment" && $id == null) {
-            $sql = "INSERT INTO Comments (questionId, comment, author) VALUES (?, ?, ?);";
-            $sqlArr = [$questionId, $text, $_SESSION["user"]];
+            $sql = "INSERT INTO Comments (questionId, comment, author, date) VALUES (?, ?, ?, ?);";
+            $sqlArr = [$questionId, $text, $_SESSION["user"], time()];
         } else if ($type == "Comment" && $id != null) {
-            $sql = "INSERT INTO Comments (questionId, answerId, comment, author) VALUES (?, ?, ?, ?);";
-            $sqlArr = [$questionId, $id, $text, $_SESSION["user"]];
+            $sql = "INSERT INTO Comments (questionId, answerId, comment, author, date) VALUES (?, ?, ?, ?, ?);";
+            $sqlArr = [$questionId, $id, $text, $_SESSION["user"], time()];
         }
 
         $this->db->executeFetchAll($sql, $sqlArr);

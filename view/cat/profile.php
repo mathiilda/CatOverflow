@@ -30,33 +30,21 @@
                 <p>Account updated successfully! 👏</p>
             </div>
         <?php endif; ?>
+
         <?php if ($data["view"] == "q") : ?>
             <h4 class="text-2xl mb-6">Asked questions</h4>
-            <?php foreach($data["questions"] as $q) : ?>
-                <div class="shadow rounded p-4 mb-6">
-                    <div class="border-b-2 border-blue-300 mb-2 flex flex-row justify-between">
-                        <a href="questions/single?id=<?= htmlentities($q->id) ?>">
-                            <h2 class="text-lg mb-2"><?= htmlentities($q->title) ?></h2>
-                        </a>
-                        <?php if ($q->answered) : ?>
-                            <i class="fas fa-user-check text-green-500 text-xl"></i>
-                        <?php else : ?>
-                            <i class="fas fa-user-times text-xl"></i>
-                        <?php endif; ?>
-                    </div>
-                    <p><?= MarkdownExtra::defaultTransform($q->question)?></p>
-                </div>
-            <?php endforeach; ?>
-
+            <?php include("q/qMinimalContainer.php"); ?>
         <?php else : ?>
             <h4 class="text-2xl mb-6">Latest activity</h4>
-            <div class="shadow rounded p-2 mb-6">
-                <div class="border-b-2 border-blue-300 mb-2 flex flex-row justify-between">
-                    <h2 class="text-lg mb-2">Comment</h2>
-                    <p>2021-01-01</p>
-                </div>
-                <p>Actual comment bla bla bla bla bla</p>
-            </div>
+
+            <h6 class="text-xl mb-4"><i class="fas fa-paw text-blue-300"></i> Questions</h6>
+            <?php include("q/lq.php") ?>
+
+            <h6 class="text-xl mb-4 pt-8"> <i class="fas fa-paw text-blue-300"></i> Answers</h6>
+            <?php include("q/la.php") ?>
+            
+            <h6 class="text-xl mb-4 pt-8"><i class="fas fa-paw text-blue-300"></i> Comments</h6>
+            <?php include("q/lc.php") ?>
         <?php endif; ?>
     </div>
 </div>

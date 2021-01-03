@@ -40,13 +40,20 @@ class ProfileController implements ContainerInjectableInterface
 
         $sql = "SELECT * FROM Questions WHERE author = ?";
 
+        $sqlQuestions = "SELECT * FROM Questions WHERE author = ? ORDER BY date ASC LIMIT 3;";
+        $sqlAnswers = "SELECT * FROM Answers WHERE author = ? ORDER BY date ASC LIMIT 3;";
+        $sqlComments = "SELECT * FROM Comments WHERE author = ? ORDER BY date ASC LIMIT 3;";
+
         $data = [
             "gravatar" => "https://www.gravatar.com/avatar/" . md5(strtolower(trim($email))),
             "edit" => $_GET["edit"] ?? false,
             "currentUser" => $user,
             "points" => $points,
             "view" => $_GET["view"] ?? "q",
-            "questions" => $this->db->executeFetchAll($sql, [$user])
+            "questions" => $this->db->executeFetchAll($sql, [$user]),
+            "latestQuestions" => $this->db->executeFetchAll($sqlQuestions, [$user]),
+            "latestAnswers" => $this->db->executeFetchAll($sqlAnswers, [$user]),
+            "latestComments" => $this->db->executeFetchAll($sqlComments, [$user]),
         ];
 
         $page->add("cat/profile", $data);
