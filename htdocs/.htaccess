@@ -15,10 +15,10 @@ RewriteRule (.*) - [NC,L]
 
 # Rewrite 1 - For request via www.student.bth.se
 RewriteCond %{HTTP_HOST} ^www\.student\.bth\.se$ [NC]
-RewriteRule ^image/(.*)$ /~mosstud/dbwebb-kurser/ramverk1/me/redovisa/htdocs/cimage/img.php?src=$1 [QSA,NC,L]
+RewriteRule ^image/(.*)$ /~mabw19/dbwebb-kurser/ramverk1/me/kmom10/CatOverflow/htdocs/cimage/img.php?src=$1 [QSA,NC,L]
 
 RewriteCond %{HTTP_HOST} ^www\.student\.bth\.se$ [NC]
-RewriteRule (.*) /~mosstud/dbwebb-kurser/ramverk1/me/redovisa/htdocs/index.php/$1 [NC,L]
+RewriteRule (.*) /~mabw19/dbwebb-kurser/ramverk1/me/kmom10/CatOverflow/htdocs/index.php/$1 [NC,L]
 
 
 # Rewrite 2 - For other requests

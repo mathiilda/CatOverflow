@@ -37,8 +37,7 @@ CREATE TABLE Answers (
     "questionId" INTEGER NOT NULL,
     "answer" TEXT NOT NULL,
     "author" TEXT NOT NULL,
-    "tags" TEXT,
-    "date" INTEGER,
+    "date" INTEGER NOT NULL,
     "points" INTEGER DEFAULT 0 NOT NULL,
     "accepted" INTEGER DEFAULT 0 NOT NULL
 );
@@ -50,11 +49,10 @@ CREATE TABLE Answers (
 DROP TABLE IF EXISTS Comments;
 CREATE TABLE Comments (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "answerId" INTEGER,
+    "answerId" INTEGER DEFAULT NULL,
     "questionId" INTEGER,
     "comment" TEXT NOT NULL,
     "author" TEXT NOT NULL,
-    "tags" TEXT,
-    "date" INTEGER NOT,
+    "date" INTEGER,
     "points" INTEGER DEFAULT 0 NOT NULL
 );

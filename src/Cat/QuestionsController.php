@@ -52,13 +52,15 @@ class QuestionsController implements ContainerInjectableInterface
         $res = $this->db->executeFetchAll($sql, [$id]);
 
         $sqlAnswers = "SELECT * FROM Answers WHERE questionId = ?;";
+        $sqlComments = "SELECT * FROM Comments WHERE questionId = ?;";
 
         $page = $this->di->get("page");
         $title = $res[0]->title;
 
         $data = [
             "res" => $res[0],
-            "answers" =>  $this->db->executeFetchAll($sqlAnswers, [$id]),
+            "answers" => $this->db->executeFetchAll($sqlAnswers, [$id]),
+            "comments" => $this->db->executeFetchAll($sqlComments, [$id]),
             "fail" => $_GET["fail"] ?? false,
             "already" => $_GET["already"] ?? false
         ];
@@ -139,16 +141,22 @@ class QuestionsController implements ContainerInjectableInterface
     public function answerAction()
     {
         $type = $_POST["type"];
-        $id = $_POST["id"];
+        $id = $_POST["id"] ?? null;
+        $questionId = $_POST["questionId"];
         $text = $_POST["text"];
 
         if ($type == "Answer") {
-            $sql = "INSERT INTO Answers (questionId, answer, author, title, date) VALUES (?, ?, ?, ?, ?);";
-        } else if ($type == "Comment") {
-            $sql = "INSERT INTO Comments (questionId, answer, author, title, date) VALUES (?, ?, ?, ?, ?);";
+            $sql = "INSERT INTO Answers (questionId, answer, author, date) VALUES (?, ?, ?, ?);";
+            $sqlArr = [$questionId, $text, $_SESSION["user"], time()];
+        } else if ($type == "Comment" && $id == null) {
+            $sql = "INSERT INTO Comments (questionId, comment, author) VALUES (?, ?, ?);";
+            $sqlArr = [$questionId, $text, $_SESSION["user"]];
+        } else if ($type == "Comment" && $id != null) {
+            $sql = "INSERT INTO Comments (questionId, answerId, comment, author) VALUES (?, ?, ?, ?);";
+            $sqlArr = [$questionId, $id, $text, $_SESSION["user"]];
         }
 
-        $this->db->executeFetchAll($sql, [$id, $text, $_SESSION["user"], "title", "date"]);
-        return $this->di->response->redirect("questions/single?id=" . $id);
+        $this->db->executeFetchAll($sql, $sqlArr);
+        return $this->di->response->redirect("questions/single?id=" . $questionId);
     }
 }

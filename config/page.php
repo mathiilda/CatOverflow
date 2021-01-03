@@ -18,9 +18,9 @@ if ($url == $urlLocal || $url == $urlLocalIndex || $url == $urlServer || $url ==
             "region" => "layout",
             "template" => "anax/v2/layout/dbwebb_se",
             "data" => [
-                "baseTitle" => " | ramverk1",
+                "baseTitle" => " | CatOverflow",
                 "bodyClass" => null,
-                "favicon" => "favicon.ico",
+                "favicon" => "img/favicon.png",
                 "htmlClass" => null,
                 "lang" => "sv",
                 "stylesheets" => [
