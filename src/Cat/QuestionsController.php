@@ -36,6 +36,7 @@ class QuestionsController implements ContainerInjectableInterface
             "edit" => $_GET["edit"] ?? false,
             "delete" => $_GET["delete"] ?? false,
             "questions" =>  $this->db->executeFetchAll($sql),
+            "vote" => $_GET["vote"] ?? false
         ];
 
         $page->add("cat/q/questionsHome", $data);
@@ -43,6 +44,23 @@ class QuestionsController implements ContainerInjectableInterface
         return $page->render([
             "title" => $title,
         ]);
+    }
+
+    
+    public function voteAction()
+    {
+        $database = new DatabaseHandler();
+        $info = $database->getVoteInfo();
+
+        if ($_POST["author"] == $_SESSION["user"]) {
+            if ($_POST["type"] == "question") {
+                return $this->di->response->redirect("questions?vote=true");
+            }
+            return $this->di->response->redirect("questions/single?id=" . $_POST["questionId"] . "&vote=true");
+        }
+
+        $this->db->executeFetchAll($info[0], $info[1]);
+        return $this->di->response->redirect($info[2]);
     }
 
     public function singleAction()
@@ -62,7 +80,8 @@ class QuestionsController implements ContainerInjectableInterface
             "answers" => $this->db->executeFetchAll($sqlAnswers, [$id]),
             "comments" => $this->db->executeFetchAll($sqlComments, [$id]),
             "fail" => $_GET["fail"] ?? false,
-            "already" => $_GET["already"] ?? false
+            "already" => $_GET["already"] ?? false,
+            "vote" => $_GET["vote"] ?? false
         ];
 
         $page->add("cat/q/single", $data);

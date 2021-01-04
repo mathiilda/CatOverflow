@@ -33,18 +33,18 @@
 
         <?php if ($data["view"] == "q") : ?>
             <h4 class="text-2xl mb-6">Asked questions</h4>
-            <?php include("q/qMinimalContainer.php"); ?>
+            <?php include("q/incl/qMinimalContainer.php"); ?>
         <?php else : ?>
             <h4 class="text-2xl mb-6">Latest activity</h4>
 
             <h6 class="text-xl mb-4"><i class="fas fa-paw text-blue-300"></i> Questions</h6>
-            <?php include("q/lq.php") ?>
+            <?php include("q/incl/lq.php") ?>
 
             <h6 class="text-xl mb-4 pt-8"> <i class="fas fa-paw text-blue-300"></i> Answers</h6>
-            <?php include("q/la.php") ?>
-            
+            <?php include("q/incl/la.php") ?>
+
             <h6 class="text-xl mb-4 pt-8"><i class="fas fa-paw text-blue-300"></i> Comments</h6>
-            <?php include("q/lc.php") ?>
+            <?php include("q/incl/lc.php") ?>
         <?php endif; ?>
     </div>
 </div>

@@ -26,8 +26,11 @@
         <div class="bg-green-200 p-2 text-center rounded shadow mb-8">
             <p>Question <span class="font-semibold">deleted</span> successfully! 👏</p>
         </div>
+    <?php elseif ($data["vote"]) : ?>
+        <div class="bg-red-400 p-2 text-center rounded shadow mb-8">
+            <p>Oops! You're the author of this question and can therefore not up/downvote it. </p>
+        </div>
     <?php endif; ?>
 
-    <?php include("qContainer.php") ?>
-    
+    <?php include("incl/qContainer.php") ?>
 </div>
