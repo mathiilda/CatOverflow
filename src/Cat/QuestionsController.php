@@ -206,12 +206,12 @@ class QuestionsController implements ContainerInjectableInterface
     // VOTE
     public function voteAction()
     {
-        // if ($_POST["author"] == $_SESSION["user"]) {
-        //     if ($_POST["type"] == "question") {
-        //         return $this->di->response->redirect("questions?vote=true");
-        //     }
-        //     return $this->di->response->redirect("questions/single?id=" . $_POST["questionId"] . "&vote=true");
-        // }
+        if ($_POST["author"] == $_SESSION["user"]) {
+            if ($_POST["type"] == "question") {
+                return $this->di->response->redirect("questions?vote=true");
+            }
+            return $this->di->response->redirect("questions/single?id=" . $_POST["questionId"] . "&vote=true");
+        }
 
         $update = $this->database->updateVote();
         $insert = $this->database->insertVote();

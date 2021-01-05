@@ -31,7 +31,20 @@ class HomeController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $title = "Home";
 
-        $data = [];
+        $questions = "SELECT * FROM Questions ORDER BY date DESC LIMIT 4";
+        $users = "SELECT * FROM Users ORDER BY points DESC LIMIT 4";
+        $tags = "SELECT tags FROM Questions";
+
+        $resTags = $this->db->executeFetchAll($tags);
+
+        $database = new DatabaseHandler();
+        $tags = $database->countTags($resTags);
+
+        $data = [
+            "questions" => $this->db->executeFetchAll($questions),
+            "users" => $this->db->executeFetchAll($users),
+            "tags" => $tags,
+        ];
 
         $page->add("cat/home", $data);
 

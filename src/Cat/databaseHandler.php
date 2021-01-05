@@ -159,4 +159,29 @@ class DatabaseHandler
 
         return $sql;
     }
+
+    public function countTags($res)
+    {
+        $arr = ["Health" => 0, "Toys" => 0, "Food" => 0, "Breeding" => 0, "Kitten" => 0, "Other" => 0];
+
+        foreach ($res as $r) {
+            if (strpos($r->tags, "Health") !== false) {
+                $arr["Health"] += 1;
+            } else if (strpos($r->tags, "Toys") !== false) {
+                $arr["Toys"] += 1;
+            } else if (strpos($r->tags, "Food") !== false) {
+                $arr["Food"] += 1;
+            } else if (strpos($r->tags, "Breeding") !== false) {
+                $arr["Breeding"] += 1;
+            } else if (strpos($r->tags, "Kitten") !== false) {
+                $arr["Kitten"] += 1;
+            } else if (strpos($r->tags, "Other") !== false) {
+                $arr["Other"] += 1;
+            }
+        }
+
+        arsort($arr);
+
+        return array_slice($arr, 0, 4);
+    }
 }

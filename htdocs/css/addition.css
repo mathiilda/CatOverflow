@@ -1,3 +1,8 @@
+.body {
+    overflow-y: scroll;
+}
+
+
 /* HEADER */
 .my-navbar li a {
     margin: auto 1em;

@@ -10,6 +10,9 @@
             </div>
         </div>
             <p class="mb-4">
+                <a href="profile?user=<?= $data["currentUser"] ?>&view=q">🐈 Times voted: <?= $data["nrVotes"]->v?></a>
+            </p>
+            <p class="mb-4">
                 <a href="profile?user=<?= $data["currentUser"] ?>&view=q">❓ Asked questions</a>
             </p>
             <p class="mb-4">
