@@ -51,9 +51,10 @@ class DatabaseHandler
 
         $tags = $_POST["tags"];
         $tagsStr = "";
+        $count = count($tags);
 
-        for ($i=0; $i < count($tags); $i++) {
-            if ($i+1 == count($tags)) {
+        for ($i=0; $i < $count; $i++) {
+            if ($i+1 == $count) {
                 $tagsStr .= $tags[$i];
             } else {
                 $tagsStr .= $tags[$i] . ",";
@@ -70,6 +71,11 @@ class DatabaseHandler
         $questionId = $_POST["questionId"];
         $answerId = $_POST["answerId"] ?? null;
         $commentId = $_POST["commentId"] ?? null;
+
+        $sql = "";
+        $arr = [];
+        $redirect = "";
+        $sqlPoints = "";
 
         if ($type == "question") {
             if ($action == "upvote") {

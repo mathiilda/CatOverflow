@@ -181,6 +181,9 @@ class QuestionsController implements ContainerInjectableInterface
         $questionId = $_POST["questionId"];
         $text = $_POST["text"];
 
+        $sql = "";
+        $sqlArr = [];
+
         if ($type == "Answer") {
             $sql = "INSERT INTO Answers (questionId, answer, author, date) VALUES (?, ?, ?, ?);";
             $sqlArr = [$questionId, $text, $_SESSION["user"], time()];

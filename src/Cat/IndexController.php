@@ -64,7 +64,7 @@ class IndexController implements ContainerInjectableInterface
             $pass = $_POST["pass"];
             $_SESSION["user"] = $user;
             $_SESSION["email"] = $email;
-            $_SESSION["userId"] = $id;
+            // $_SESSION["userId"] = $id;
 
             $sql = "INSERT INTO Users (username, email, password) VALUES (?, ?, ?);";
             $this->db->executeFetchAll($sql, [$user, $email, $pass]);
