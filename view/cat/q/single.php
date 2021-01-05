@@ -1,12 +1,10 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
-<div class="w-8/12 md:w-2/3 mt-20 mb-20 mr-auto ml-auto bg-gray-100 rounded shadow p-8 overflow-auto">
+<div class="w-7/12 md:w-2/3 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow p-8 overflow-auto">
 
     <div class="w-full pb-8">
         <a href="../questions" class="p-2 mr-2 rounded shadow"><i class="fas fa-arrow-left"></i> Go back to overview</a>
     </div>
-
-
 
     <!-- ERROR-HANDLING -->
     <?php if ($data["fail"]) : ?>
@@ -22,7 +20,6 @@
         <p>Oops! You're the author of this answer/comment and can therefore not up/downvote it. </p>
     </div>
     <?php endif; ?>
-
 
 
     <!-- QUESTION -->
@@ -62,27 +59,23 @@
         </div>
     </div>
 
-
-
     <!-- COMMENTS -->
-    <?php 
-        foreach ($data["comments"] as $comment) {
-            if ($comment->answerId == null) {
-                include("incl/voteComments.php");
-            }
-        }
+    <?php
+        $iterate = $data["comments"];
+        $v = "comment";
+        $a = null;
+        include("incl/comment/vote.php")
     ?>
-
 
 
     <!-- HEADER/CONTROLLS -->
     <div class="w-full border-b-2 border-gray-200 flex flex-row justify-between pb-4 pt-16">
         <h2 class="text-2xl mt-auto mb-auto">Answers:</h2>
         <div class="mt-auto mb-auto mr-0 ml-0">
-            <a href="questions?sort=asc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-up"></i> Date</a>
-            <a href="questions?sort=desc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Date</a>
-            <a href="questions?sort=asc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-up"></i> Rank</a>
-            <a href="questions?sort=desc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Rank</a>
+            <a href="single?id=<?=$data["qId"]?>&sort=asc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-up"></i> Date</a>
+            <a href="single?id=<?=$data["qId"]?>&sort=desc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Date</a>
+            <a href="single?id=<?=$data["qId"]?>&sort=asc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-up"></i> Rank</a>
+            <a href="single?id=<?=$data["qId"]?>&sort=desc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Rank</a>
         </div>
     </div>
 
@@ -92,14 +85,10 @@
     <?php foreach ($data["answers"] as $answer) : ?>
         <div class="flex flex-row">
             <div class="rounded shadow p-8 flex flex-row w-8/12 mb-8 mt-8">
-                <?php include("incl/voteAnswers.php"); ?>
-                <div class="w-full">
-                    <p><?= MarkdownExtra::defaultTransform($answer->answer) ?></p>
-                    <a class="float-right mt-4 border-b-2 border-blue-300" href="../profile?user=<?= htmlentities($answer->author) ?>">Author: <?= htmlentities($answer->author) ?></a>
-                </div>
+                <?php include("incl/answer/vote.php") ?>
             </div>
 
-            <!-- COMMMENT ANSWER FORM -->
+            <!-- COMMMENT ANSWER -->
             <div class="rounded shadow p-8 flex flex-row w-4/12 mb-8 justify-center mt-8">
                 <form action="answer" method="POST">
                     <h2 class="font-semibold">Want to comment <?= $answer->author ?>'s answer? Write it down below!</h2>
@@ -118,12 +107,11 @@
         <!-- COMMENTS: ON ANSWERS -->
         <div class="w-full overflow-auto">
         <?php 
-            foreach ($data["comments"] as $comment) {
-                if ($comment->answerId == null) {
-                    include("incl/voteComments.php");
-                }
-            }
+            $iterate = $data["comments"];
+            $v = "comment";
+            $a = $answer->id;
+            include("incl/comment/vote.php")
         ?>
         </div>
-    <?php endforeach; ?>
+    <?php endforeach; ?> 
 </div> 

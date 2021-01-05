@@ -1,27 +1,27 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
-<div class="w-8/12 mt-20 mb-20 mr-auto ml-auto bg-gray-100 rounded shadow md:w-2/3 flex flex-row">
-    <div class="w-1/6 p-8 rounded-l-lg border-r-2 border-gray-200">
-        <a href="?tag=toys" class="text-lg">
+<div class="w-11/12 lg:w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow p-4 sm:p-8 flex flex-col lg:flex-row lg:justify-left">
+    <div class="rounded-l-lg border-b-2 mb-4 border-gray-200 flex flex-row flex-wrap justify-start md:justify-between lg:flex-col lg:border-r-2 lg:border-b-0 lg:w-1/6">
+        <a href="?tag=toys" class="text-lg mr-4 md:mr-0">
             <i class="fas fa-hashtag mr-2 pb-4"></i>Toys
-        </a><br>
-        <a href="?tag=food" class="text-lg">
+        </a>
+        <a href="?tag=food" class="text-lg mr-4 md:mr-0">
             <i class="fas fa-hashtag mr-2 pb-4"></i>Food
-        </a><br>
-        <a href="?tag=health" class="text-lg">
+        </a>
+        <a href="?tag=health" class="text-lg mr-4 md:mr-0">
             <i class="fas fa-hashtag mr-2 pb-4"></i>Health
-        </a><br>
-        <a href="?tag=breeding" class="text-lg">
+        </a>
+        <a href="?tag=breeding" class="text-lg mr-4 md:mr-0">
             <i class="fas fa-hashtag mr-2 pb-4"></i>Breeding
-        </a><br>
-        <a href="?tag=kitten" class="text-lg">
+        </a>
+        <a href="?tag=kitten" class="text-lg mr-4 md:mr-0">
             <i class="fas fa-hashtag mr-2 pb-4"></i>Kitten
-        </a><br>
-        <a href="?tag=other" class="text-lg">
+        </a>
+        <a href="?tag=other" class="text-lg mr-4 md:mr-0">
             <i class="fas fa-hashtag mr-2 pb-4"></i>Other
         </a>
     </div>
-    <div class="w-5/6 p-8">
+    <div class="lg:w-5/6 lg:ml-8">
         <h4 class="text-2xl mb-6">Tags</h4>
         <p>Click on one of the tags to see questions that has the same tag.</p>
         <div class="flex flex-row flex-wrap mt-4">

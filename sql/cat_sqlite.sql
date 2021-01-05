@@ -56,3 +56,19 @@ CREATE TABLE Comments (
     "date" INTEGER,
     "points" INTEGER DEFAULT 0 NOT NULL
 );
+
+
+--
+-- Votes
+--
+DROP TABLE IF EXISTS Votes;
+CREATE TABLE Votes (
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "answerId" INTEGER,
+    "questionId" INTEGER,
+    "commentId" INTEGER,
+    "voter" TEXT NOT NULL,
+    "date" INTEGER,
+    "vote" INTEGER DEFAULT 0 NOT NULL, -- down vote eller up vote
+    "voted" INTEGER DEFAULT 0
+);

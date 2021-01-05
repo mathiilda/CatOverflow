@@ -14,11 +14,19 @@ class QuestionsController implements ContainerInjectableInterface
      * @var string $db a sample member variable that gets initialised
      */
     private $db = "not active";
+    private $database;
+
+    private function addPoints($points, $user)
+    {
+        $sql = "UPDATE Users SET points = points + ? WHERE username = ?";
+        $this->db->executeFetchAll($sql, [$points, $user]);
+    }
 
     public function initialize()
     {
         $this->db = $this->di->get("db");
         $this->db->connect();
+        $this->database = new DatabaseHandler();
         $auth = new AuthHandler();
 
         if (!$auth->signedIn()) {
@@ -26,17 +34,23 @@ class QuestionsController implements ContainerInjectableInterface
         }
     }
 
+
+
+    // SHOW ALL QUESTIONS
     public function indexAction()
     {
         $page = $this->di->get("page");
         $title = "Questions";
-        $sql = "SELECT * FROM Questions;";
+
+        $sort = $this->database->checkSort("Questions");
+        $votes = "SELECT * FROM Votes;";
 
         $data = [
             "edit" => $_GET["edit"] ?? false,
             "delete" => $_GET["delete"] ?? false,
-            "questions" =>  $this->db->executeFetchAll($sql),
-            "vote" => $_GET["vote"] ?? false
+            "questions" => $this->db->executeFetchAll($sort),
+            "vote" => $_GET["vote"] ?? false,
+            "votes" => $this->db->executeFetchAll($votes),
         ];
 
         $page->add("cat/q/questionsHome", $data);
@@ -46,42 +60,32 @@ class QuestionsController implements ContainerInjectableInterface
         ]);
     }
 
-    
-    public function voteAction()
-    {
-        $database = new DatabaseHandler();
-        $info = $database->getVoteInfo();
 
-        if ($_POST["author"] == $_SESSION["user"]) {
-            if ($_POST["type"] == "question") {
-                return $this->di->response->redirect("questions?vote=true");
-            }
-            return $this->di->response->redirect("questions/single?id=" . $_POST["questionId"] . "&vote=true");
-        }
 
-        $this->db->executeFetchAll($info[0], $info[1]);
-        return $this->di->response->redirect($info[2]);
-    }
-
+    // SHOW SINGLE QUESTION WITH ANSWERS AND COMMENTS
     public function singleAction()
     {
         $id = $_GET["id"];
         $sql = "SELECT * FROM Questions WHERE id = ?;";
         $res = $this->db->executeFetchAll($sql, [$id]);
 
-        $sqlAnswers = "SELECT * FROM Answers WHERE questionId = ?;";
+        $sort = $this->database->checkSort("Answers");
+        $votes = "SELECT * FROM Votes WHERE questionId = ?;";
+        // $sqlAnswers = "SELECT * FROM Answers WHERE questionId = ?;";
         $sqlComments = "SELECT * FROM Comments WHERE questionId = ?;";
 
         $page = $this->di->get("page");
         $title = $res[0]->title;
 
         $data = [
+            "qId" => $_GET["id"],
             "res" => $res[0],
-            "answers" => $this->db->executeFetchAll($sqlAnswers, [$id]),
+            "answers" => $this->db->executeFetchAll($sort),
             "comments" => $this->db->executeFetchAll($sqlComments, [$id]),
             "fail" => $_GET["fail"] ?? false,
             "already" => $_GET["already"] ?? false,
-            "vote" => $_GET["vote"] ?? false
+            "vote" => $_GET["vote"] ?? false,
+            "votes" => $this->db->executeFetchAll($votes, [$id]),
         ];
 
         $page->add("cat/q/single", $data);
@@ -91,34 +95,41 @@ class QuestionsController implements ContainerInjectableInterface
         ]);
     }
 
+
+
+    // VIEW TO ADD QUESTION
     public function addAction()
     {
         $page = $this->di->get("page");
         $title = "Add question";
 
-        $data = [];
-
-        $page->add("cat/q/addQuestion", $data);
+        $page->add("cat/q/addQuestion");
 
         return $page->render([
             "title" => $title,
         ]);
     }
 
+
+
+    // ADDED QUESTION
     public function crudAction()
     {
-        $database = new DatabaseHandler();
-
         $title = $_POST["title"];
         $question = $_POST["question"];
-        $tags = $database->createTagsString();
+        $tags = $this->database->createTagsString();
 
         $sql = "INSERT INTO Questions (question, author, title, tags, date) VALUES (?, ?, ?, ?, ?);";
         $this->db->executeFetchAll($sql, [$question, $_SESSION["user"], $title, $tags, time()]);
 
+        $this->addPoints(1, $_SESSION["user"]);
+
         return $this->di->response->redirect("questions?edit=true");
     }
 
+
+
+    // ACCEPTING QUESTION
     public function acceptAction()
     {
         $id = $_POST["id"];
@@ -144,6 +155,9 @@ class QuestionsController implements ContainerInjectableInterface
         return $this->di->response->redirect("questions/single?id=" . $questionId);
     }
 
+
+
+    // DELETE QUESTION
     public function deleteAction()
     {
         $id = $_POST["id"];
@@ -157,6 +171,9 @@ class QuestionsController implements ContainerInjectableInterface
         return $this->di->response->redirect("questions?delete=true");
     }
 
+
+
+    // ANSWER AN QUESTION OR COMMENT AN ANSWER/QUESTION.
     public function answerAction()
     {
         $type = $_POST["type"];
@@ -168,7 +185,7 @@ class QuestionsController implements ContainerInjectableInterface
             $sql = "INSERT INTO Answers (questionId, answer, author, date) VALUES (?, ?, ?, ?);";
             $sqlArr = [$questionId, $text, $_SESSION["user"], time()];
 
-            $sqlAnswered = "UPDATE Questions SET answered = 1 WHERE id = ?";
+            $sqlAnswered = "UPDATE Questions SET answered = answered + 1 WHERE id = ?";
             $this->db->executeFetchAll($sqlAnswered, [$questionId]);
         } else if ($type == "Comment" && $id == null) {
             $sql = "INSERT INTO Comments (questionId, comment, author, date) VALUES (?, ?, ?, ?);";
@@ -179,6 +196,32 @@ class QuestionsController implements ContainerInjectableInterface
         }
 
         $this->db->executeFetchAll($sql, $sqlArr);
+        $this->addPoints(1, $_SESSION["user"]);
+
         return $this->di->response->redirect("questions/single?id=" . $questionId);
+    }
+
+
+
+    // VOTE
+    public function voteAction()
+    {
+        // if ($_POST["author"] == $_SESSION["user"]) {
+        //     if ($_POST["type"] == "question") {
+        //         return $this->di->response->redirect("questions?vote=true");
+        //     }
+        //     return $this->di->response->redirect("questions/single?id=" . $_POST["questionId"] . "&vote=true");
+        // }
+
+        $update = $this->database->updateVote();
+        $insert = $this->database->insertVote();
+
+        $this->db->executeFetchAll($update[0], $update[1]);
+        $this->db->executeFetchAll($insert[0], $insert[1]);
+
+        $points = $this->db->executeFetchAll($update[3], $update[1]);
+        $this->addPoints($points[0]->points, $_POST["author"]);
+
+        return $this->di->response->redirect($update[2]);
     }
 }

@@ -1,19 +1,19 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
-<div class="w-8/12 lg:w-12/12 xl:w-10/12 2xl:w-8/12 mt-20 mb-20 mr-auto ml-auto bg-gray-100 rounded shadow p-8">
+<div class="w-11/12 lg:w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow p-4 sm:p-8">
 
     <!-- HEADER -->
-    <div class="flex flex-row justify-between border-b-2 border-gray-200 pb-6 mb-8">
+    <div class="flex flex-col sm:flex-row justify-between border-b-2 border-gray-200 pb-6 mb-8">
         <div>
-            <h2 class="text-2xl">Questions</h2>
-            <p>Click on the title of the question to see answers and comments.</p>
+            <h2 class="pb-4 sm:pb-0 text-2xl">Questions</h2>
+            <!-- <p>Click on the title of the question to see answers and comments.</p> -->
         </div>
-        <div class="mt-auto mb-auto mr-0 ml-0">
-            <a href="questions/add" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-plus"></i> Add question</a>
-            <a href="questions?sort=asc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-up"></i> Date</a>
-            <a href="questions?sort=desc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Date</a>
-            <a href="questions?sort=asc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-up"></i> Rank</a>
-            <a href="questions?sort=desc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Rank</a>
+        <div class="mt-auto mb-auto mr-0 flex flex-col text-center sm:flex-row sm:text-left">
+            <a href="questions/add" class="bg-blue-300 text-gray-800 p-2 mr-2 rounded shadow hover:bg-blue-400 mb-4 sm:mb-0"><i class="fas fa-plus"></i> Add question</a>
+            <a href="questions?sort=desc&type=date" class="bg-blue-300 text-gray-800 p-2 mr-2 rounded shadow hover:bg-blue-400 mb-4 sm:mb-0"><i class="fas fa-arrow-up"></i>Date</a>
+            <a href="questions?sort=asc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Date</a>
+            <a href="questions?sort=desc&type=points" class="bg-blue-300 text-gray-800 p-2 mr-2 rounded shadow hover:bg-blue-400"><i class="fas fa-arrow-up"></i> Rank</a>
+            <a href="questions?sort=asc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Rank</a>
         </div>
     </div>
     
