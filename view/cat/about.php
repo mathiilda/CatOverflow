@@ -10,6 +10,6 @@
         <p class="mb-6">The creator of this webpage is Mathilda, a second year student studying webprogramming. In her spare time she likes to read books, hang out with friends (remember the days when that was possible to do irl..) and last but not least: pet and play with her cat Winston.</p>
 
         <h4 class="text-2xl">Github</h4>
-        <p>You can find this projects GitHub <a class="text-blue-400 underline" href="https://github.com/mathiilda/stackcat">here</a>.</p>
+        <p>You can find this projects GitHub <a class="text-blue-400 underline" href="https://github.com/mathiilda/CatOverflow">here</a>.</p>
     </div>
 </div>

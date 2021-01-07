@@ -34,7 +34,7 @@
                     </a>
                     <div class="flex flex-row">
                         <?php foreach ($t as $subject) : ?>
-                            <a class="mr-6" href=""><i class="fas fa-hashtag"></i> <?= $subject ?></a>
+                            <a class="mr-6" href=""><i class="fas fa-hashtag"></i> <?= htmlentities($subject) ?></a>
                         <?php endforeach; ?>
                         <p><?= gmdate("Y-m-d", htmlentities($data["res"]->date)) ?></p>
                     </div>
@@ -91,7 +91,7 @@
             <!-- COMMMENT ANSWER -->
             <div class="rounded shadow p-8 flex flex-row w-full md:w-4/12 mt-4 mb-4 md:mb-8 md:mt-8 justify-center">
                 <form action="answer" method="POST">
-                    <h2 class="font-semibold">Want to comment <?= $answer->author ?>'s answer? Write it down below!</h2>
+                    <h2 class="font-semibold">Want to comment <?= htmlentities($answer->author) ?>'s answer? Write it down below!</h2>
 
                     <textarea name="text" rows="2" class="border-solid border-blue-300 border-b-2 bg-gray-100 w-full" required></textarea>
 
@@ -109,7 +109,7 @@
         <?php 
             $iterate = $data["comments"];
             $v = "comment";
-            $a = $answer->id;
+            $a = htmlentities($answer->id);
             include("incl/comment/vote.php")
         ?>
         </div>

@@ -1,8 +1,8 @@
 <form action="questions/vote" method="POST">
     <input type="hidden" name="action" value="upvote">
     <input type="hidden" name="type" value="question">
-    <input type="hidden" name="questionId" value="<?= $q->id ?>">
-    <input type="hidden" name="author" value="<?= $q->author ?>">
+    <input type="hidden" name="questionId" value="<?= htmlentities($q->id) ?>">
+    <input type="hidden" name="author" value="<?= htmlentities($q->author) ?>">
 
     <?php
         foreach ($data["votes"] as $v) {
@@ -39,13 +39,13 @@
     <?php endif; ?>
 </form>
 
-<p class="mt-1 mb-1 ml-2 mr-2 sm:ml-0 sm:mr-0"><?= $q->points ?></p>
+<p class="mt-1 mb-1 ml-2 mr-2 sm:ml-0 sm:mr-0"><?= htmlentities($q->points) ?></p>
 
 <form action="questions/vote" method="POST">
     <input type="hidden" name="action" value="downvote">
     <input type="hidden" name="type" value="question">
-    <input type="hidden" name="questionId" value="<?= $q->id ?>">
-    <input type="hidden" name="author" value="<?= $q->author ?>">
+    <input type="hidden" name="questionId" value="<?= htmlentities($q->id) ?>">
+    <input type="hidden" name="author" value="<?= htmlentities($q->author) ?>">
 
     <?php
         foreach ($data["votes"] as $v) {
