@@ -22,7 +22,7 @@
                         <a class="mb-2" href="profile?user=<?= htmlentities($u->username) ?>">
                             <?= $count . ". " . htmlentities($u->username) ?>
                         </a>
-                        <p>🐱 <?= htmlentities($u->points )?></p>
+                        <p>🐱 <?= htmlentities($u->points)?></p>
                     </div>
                     <?php $count += 1; ?>
                 <?php endforeach; ?>
@@ -42,12 +42,12 @@
                             <h2 class="text-xl"><?= htmlentities($q->title) ?></h2>
                         </a>
                         <div class="flex flex-row flex-wrap">
-                            <?php if($q->tags != null) : ?>
-                            <?php foreach ($t as $subject) : ?>
-                                <a class="mr-4" href="tags?tag=<?= htmlentities($subject) ?>">
-                                    <i class="fas text-gray-800 fa-hashtag"></i> <?= htmlentities($subject) ?>
-                                </a>
-                            <?php endforeach; ?>
+                            <?php if ($q->tags != null) : ?>
+                                <?php foreach ($t as $subject) : ?>
+                                    <a class="mr-4" href="tags?tag=<?= htmlentities($subject) ?>">
+                                        <i class="fas text-gray-800 fa-hashtag"></i> <?= htmlentities($subject) ?>
+                                    </a>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                             <?php if ($q->accepted == 1) : ?>
                                 <p class="mr-4">

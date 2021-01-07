@@ -1,6 +1,6 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
-<?php foreach($iterate as $i) : ?>
+<?php foreach ($iterate as $i) : ?>
     <?php if ($i->answerId == $a) : ?>
         <div class="rounded shadow p-4 pl-8 w-full mb-4 bg-gray-100 border-l-2 border-blue-300 bg-blue-100 flex flex-row">
             <div class="text-center">

@@ -6,7 +6,7 @@ class DatabaseHandler
 {
     // Kollar om användaren finns sen tidigare, gör den det returneras true
     // annars false.
-    public function checkUser($result, $saveInSession=true)
+    public function checkUser($result, $saveInSession = true)
     {
         $user = $_POST["user"];
 

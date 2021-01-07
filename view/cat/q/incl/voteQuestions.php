@@ -5,17 +5,17 @@
     <input type="hidden" name="author" value="<?= htmlentities($q->author) ?>">
 
     <?php
-        foreach ($data["votes"] as $v) {
-            if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 0) {
-                $view = "gray";
-                break;
-            } else if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 1) {
-                $view = "green";
-                break;
-            } else {
-                $view = "normal";
-            }
+    foreach ($data["votes"] as $v) {
+        if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 0) {
+            $view = "gray";
+            break;
+        } else if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 1) {
+            $view = "green";
+            break;
+        } else {
+            $view = "normal";
         }
+    }
     ?>
 
     <?php if ($view == "gray") : ?>
@@ -26,7 +26,7 @@
         <button class="pointer-events-none">
             <i title="Upvote" class="fas fa-paw text-gray-800 bg-green-300 p-2 rounded shadow hover:bg-blue-400"></i>
         </button>
-    <?php else: ?>
+    <?php else : ?>
         <button type="submit">
             <i title="Upvote" class="fas fa-paw text-gray-800 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
         </button>
@@ -48,17 +48,17 @@
     <input type="hidden" name="author" value="<?= htmlentities($q->author) ?>">
 
     <?php
-        foreach ($data["votes"] as $v) {
-            if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 0) {
-                $view = "red";
-                break;
-            } else if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 1) {
-                $view = "gray";
-                break;
-            } else {
-                $view = "normal";
-            }
+    foreach ($data["votes"] as $v) {
+        if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 0) {
+            $view = "red";
+            break;
+        } else if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 1) {
+            $view = "gray";
+            break;
+        } else {
+            $view = "normal";
         }
+    }
     ?>
 
     <?php if ($view == "red") : ?>
@@ -69,7 +69,7 @@
         <button class="pointer-events-none">
             <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-gray-200 p-2 rounded shadow hover:bg-blue-400"></i>
         </button>
-    <?php else: ?>
+    <?php else : ?>
         <button type="submit">
             <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
         </button>

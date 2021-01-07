@@ -1,6 +1,6 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
-<?php foreach($data["latestComments"] as $lc) : ?>
+<?php foreach ($data["latestComments"] as $lc) : ?>
     <div class="shadow rounded p-4 mb-6">
         <div class="border-b-2 border-blue-300 mb-2 flex flex-row justify-end">
             <div class="flex flex-row mb-2">

@@ -1,6 +1,6 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
-<?php foreach($data["questions"] as $q) : ?>
+<?php foreach ($data["questions"] as $q) : ?>
     <div class="shadow rounded p-4 mb-6">
         <div class="border-b-2 border-gray-200 flex flex-col flex-wrap md:flex-row justify-between">
             <a href="questions/single?id=<?= htmlentities($q->id) ?>">

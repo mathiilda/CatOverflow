@@ -106,12 +106,12 @@
 
         <!-- COMMENTS: ON ANSWERS -->
         <div class="w-full overflow-auto pb-8 md:pb-0">
-        <?php 
+        <?php
             $iterate = $data["comments"];
             $v = "comment";
             $a = htmlentities($answer->id);
             include("incl/comment/vote.php")
         ?>
         </div>
-    <?php endforeach; ?> 
+    <?php endforeach; ?>
 </div> 
