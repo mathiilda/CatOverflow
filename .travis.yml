@@ -22,6 +22,10 @@ before_script:
 script:
     - make test
 
+env:
+    global:
+        - XDEBUG_MODE=coverage
+
 # notifications:
 #     irc: "irc.freenode.org#dbwebb"
 #     urls:

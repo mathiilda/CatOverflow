@@ -1,3 +1,6 @@
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mathiilda/CatOverflow/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/mathiilda/CatOverflow/?branch=main)
+[![Build Status](https://travis-ci.com/mathiilda/CatOverflow.svg?branch=main)](https://travis-ci.com/mathiilda/CatOverflow)
+
 # CatOverflow
 A Stackoverflow inspired website but instead of code it's cats! This website was made as the final project in the ramverk1-course.
 
