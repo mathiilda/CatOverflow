@@ -9,9 +9,9 @@
             <div class="flex flex-row mb-2 lg:mb-0">
                 <p class="mr-4"><?= gmdate("Y-m-d", htmlentities($q->date)) ?></p>
                 <?php if ($q->answered) : ?>
-                    <i class="fas fa-user-check text-green-500 text-xl"></i>
+                    <i class="fas fa-comment text-green-500 text-xl"></i>
                 <?php else : ?>
-                    <i class="fas fa-user-times text-xl"></i>
+                    <i class="fas fa-comment text-xl"></i>
                 <?php endif; ?>
             </div>
         </div>

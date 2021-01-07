@@ -16,10 +16,23 @@ class QuestionsController implements ContainerInjectableInterface
     private $db = "not active";
     private $database;
 
+    // NU BLIR DET FÖR MÅNGA POÄNG!!!
+    // private function addPoints($points, $user)
+    // {
+    //     $sql = "UPDATE Users SET points = points + ? WHERE username = ?";
+    //     $this->db->executeFetchAll($sql, [$points, $user]);
+    // }
+
     private function addPoints($points, $user)
     {
-        $sql = "UPDATE Users SET points = points + ? WHERE username = ?";
-        $this->db->executeFetchAll($sql, [$points, $user]);
+        $action = $_POST["action"];
+
+        if ($action == "upvote") {
+            $sql = "UPDATE Users SET points = points + 1 WHERE username = ?";
+        } else {
+            $sql = "UPDATE Users SET points = points - 0.5 WHERE username = ?";
+        }
+        $this->db->executeFetchAll($sql, [$user]);
     }
 
     public function initialize()

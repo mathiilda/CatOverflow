@@ -5,11 +5,13 @@
     <input type="hidden" name="author" value="<?= htmlentities($q->author) ?>">
 
     <?php
+    $view = "";
+
     foreach ($data["votes"] as $v) {
-        if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 0) {
+        if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 0 && $v->answerId == null) {
             $view = "gray";
             break;
-        } else if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 1) {
+        } else if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 1 && $v->answerId == null) {
             $view = "green";
             break;
         } else {
@@ -18,24 +20,24 @@
     }
     ?>
 
-    <?php if ($view == "gray") : ?>
-        <button class="pointer-events-none">
-            <i title="Upvote" class="fas fa-paw text-gray-800 bg-gray-200 p-2 rounded shadow hover:bg-blue-400"></i>
-        </button>
-    <?php elseif ($view == "green") : ?>
-        <button class="pointer-events-none">
-            <i title="Upvote" class="fas fa-paw text-gray-800 bg-green-300 p-2 rounded shadow hover:bg-blue-400"></i>
-        </button>
-    <?php else : ?>
-        <button type="submit">
-            <i title="Upvote" class="fas fa-paw text-gray-800 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
-        </button>
-    <?php endif; ?>
-
     <?php if ($data["votes"] == []) : ?>
         <button type="submit">
             <i title="Downvote" class="fas fa-paw text-gray-800 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
         </button>
+    <?php else : ?>
+        <?php if ($view == "gray") : ?>
+        <button class="pointer-events-none">
+            <i title="Upvote" class="fas fa-paw text-gray-800 bg-gray-200 p-2 rounded shadow hover:bg-blue-400"></i>
+        </button>
+        <?php elseif ($view == "green") : ?>
+            <button class="pointer-events-none">
+                <i title="Upvote" class="fas fa-paw text-gray-800 bg-green-300 p-2 rounded shadow hover:bg-blue-400"></i>
+            </button>
+        <?php else : ?>
+            <button type="submit">
+                <i title="Upvote" class="fas fa-paw text-gray-800 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
+            </button>
+        <?php endif; ?>
     <?php endif; ?>
 </form>
 
@@ -48,11 +50,13 @@
     <input type="hidden" name="author" value="<?= htmlentities($q->author) ?>">
 
     <?php
+    $view = "";
+
     foreach ($data["votes"] as $v) {
-        if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 0) {
+        if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 0 && $v->answerId == null) {
             $view = "red";
             break;
-        } else if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 1) {
+        } else if ($v->questionId == $q->id && $v->voter == $_SESSION["user"] && $v->vote == 1 && $v->answerId == null) {
             $view = "gray";
             break;
         } else {
@@ -61,24 +65,24 @@
     }
     ?>
 
-    <?php if ($view == "red") : ?>
-        <button class="pointer-events-none">
-            <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-red-400 p-2 rounded shadow hover:bg-blue-400"></i>
-        </button>
-    <?php elseif ($view == "gray") : ?>
-        <button class="pointer-events-none">
-            <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-gray-200 p-2 rounded shadow hover:bg-blue-400"></i>
-        </button>
-    <?php else : ?>
-        <button type="submit">
-            <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
-        </button>
-    <?php endif; ?>
-
     <?php if ($data["votes"] == []) : ?>
         <button type="submit">
             <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
         </button>
+    <?php else : ?>
+        <?php if ($view == "red") : ?>
+        <button class="pointer-events-none">
+            <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-red-400 p-2 rounded shadow hover:bg-blue-400"></i>
+        </button>
+        <?php elseif ($view == "gray") : ?>
+            <button class="pointer-events-none">
+                <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-gray-200 p-2 rounded shadow hover:bg-blue-400"></i>
+            </button>
+        <?php else : ?>
+            <button type="submit">
+                <i title="Downvote" class="fas fa-paw text-gray-800 transform rotate-180 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
+            </button>
+        <?php endif; ?>
     <?php endif; ?>
 
 </form>

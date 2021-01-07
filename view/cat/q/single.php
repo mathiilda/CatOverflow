@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <p><?= MarkdownExtra::defaultTransform($data["res"]->question) ?></p>
-                <a class="border-b-2 border-blue-300 float-right" href="profile?user=<?= htmlentities($data["res"]->author) ?>">Author: <?= htmlentities($data["res"]->author) ?></a>
+                <a class="border-b-2 border-blue-300 float-right" href="../profile?user=<?= htmlentities($data["res"]->author) ?>">Author: <?= htmlentities($data["res"]->author) ?></a>
             </div>
         </div>
 

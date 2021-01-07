@@ -25,7 +25,7 @@
         <h4 class="text-2xl mb-6">Tags</h4>
         <p>Click on one of the tags to see questions that has the same tag.</p>
         <div class="flex flex-row flex-wrap mt-4">
-            <?php if ($data["questions"]) : ?>
+            <?php if ($data["questions"] || $data["currentTag"] == null) : ?>
                 <?php foreach ($data["questions"] as $q) : ?>
                     <div class="rounded shadow p-8 flex flex-row w-full mb-8">
                         <?php $t = explode(",", $q->tags); ?>
