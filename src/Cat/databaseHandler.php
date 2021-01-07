@@ -154,7 +154,7 @@ class DatabaseHandler
 
     public function checkSort($table)
     {
-        $sort = $_GET["sort"] ?? "asc";
+        $sort = $_GET["sort"] ?? "desc";
         $type = $_GET["type"] ?? "date";
 
         if ($table == "Questions") {

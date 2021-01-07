@@ -1,7 +1,7 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
-<div class="w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow flex flex-row">
-    <div class="w-1/3 p-8 rounded-l-lg border-r-2 border-gray-200">
+<div class="w-11/12 lg:w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow flex flex-col md:flex-row p-4 sm:p-8">
+    <div class="w-full mb-8 md:mb-0 md:w-1/3 md:pr-8 border-r-0 rounded-l-lg md:border-r-2 border-gray-200">
         <div class="flex flex-row border-b-2 border-gray-200 pb-6 mb-4">
             <img class="rounded-full" src="<?= htmlentities($data["gravatar"]) ?>" alt="gravatar">
             <div class="ml-4">
@@ -9,25 +9,27 @@
                 <p>🐱 <?= htmlentities($data["points"]) ?></p>
             </div>
         </div>
-            <p class="mb-4">
-                <a href="profile?user=<?= $data["currentUser"] ?>&view=q">🐈 Times voted: <?= $data["nrVotes"]->v?></a>
-            </p>
-            <p class="mb-4">
-                <a href="profile?user=<?= $data["currentUser"] ?>&view=q">❓ Asked questions</a>
-            </p>
-            <p class="mb-4">
-                <a href="profile?user=<?= $data["currentUser"] ?>&view=l">🐱‍💻 Latest activity</a>
-            </p>
-        <?php if ($data["currentUser"] == $_SESSION["user"]) : ?>
-            <p class="mb-4">
-                <a href="profile/edit">🖊️ Edit account</a>
-            </p>
-            <p>
-                <a href="profile/logOut">🐾 Log out</a>
-            </p>
-        <?php endif; ?>
+        <div class="flex flex-row flex-wrap md:flex-col">
+            <p class="mb-4 pl-4 pr-4 md:pl-0 pr-0">
+                    <a href="profile?user=<?= $data["currentUser"] ?>&view=q">🐈 Times voted: <?= $data["nrVotes"]->v?></a>
+                </p>
+                <p class="mb-4 pl-4 pr-4 md:pl-0 pr-0">
+                    <a href="profile?user=<?= $data["currentUser"] ?>&view=q">❓ Asked questions</a>
+                </p>
+                <p class="mb-4 pl-4 pr-4 md:pl-0 pr-0">
+                    <a href="profile?user=<?= $data["currentUser"] ?>&view=l">🐱‍💻 Latest activity</a>
+                </p>
+            <?php if ($data["currentUser"] == $_SESSION["user"]) : ?>
+                <p class="mb-4 pl-4 pr-4 md:pl-0 pr-0">
+                    <a href="profile/edit">🖊️ Edit account</a>
+                </p>
+                <p>
+                    <a href="profile/logOut">🐾 Log out</a>
+                </p>
+            <?php endif; ?>
+        </div>
     </div>
-    <div class="w-2/3 p-8">
+    <div class="w-full md:w-2/3 md:pl-8">
         <?php if ($data["edit"]) : ?>
             <div class="bg-green-200 p-2 text-center rounded shadow mb-4">
                 <p>Account updated successfully! 👏</p>

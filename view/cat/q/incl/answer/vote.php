@@ -1,6 +1,6 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
-<div class="flex flex-col w-2/24 mr-8 justify-between text-center text-2xl h-36">
+<div class="flex flex-col w-2/24 mr-8 justify-start text-center text-xl h-30">
     <form action="vote" method="POST">
         <input type="hidden" name="action" value="upvote">
         <input type="hidden" name="type" value="answer">
@@ -32,5 +32,8 @@
 </div>
 <div class="w-full">
     <p><?= MarkdownExtra::defaultTransform($answer->answer) ?></p>
-    <a class="float-right mt-4 border-b-2 border-blue-300" href="../profile?user=<?= htmlentities($answer->author) ?>">Author: <?= htmlentities($answer->author) ?></a>
+    <p class="float-right mt-4 b-0">
+        <?= gmdate("Y-m-d", htmlentities($answer->date)) ?> |
+        <a class="border-b-2 border-blue-300" href="../profile?user=<?= htmlentities($answer->author) ?>">Author: <?= htmlentities($answer->author) ?></a>
+    </p>
 </div>

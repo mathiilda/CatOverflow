@@ -1,4 +1,4 @@
-<div class="w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow md:w-7/12 p-8">
+<div class="w-11/12 lg:w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow p-4 sm:p-8">
     <h2 class="mb-2 text-2xl">Users</h2>
     <p class="mb-6">You can find all users here. Simply press on their username or their profile-picture to visit their profile.</p>
     <div class="flex flex-row flex-wrap justify-start">

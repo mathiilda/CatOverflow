@@ -11,9 +11,9 @@
         <div class="mt-auto mb-auto mr-0 flex flex-col text-center sm:flex-row sm:text-left">
             <a href="questions/add" class="bg-blue-300 text-gray-800 p-2 mr-2 rounded shadow hover:bg-blue-400 mb-4 sm:mb-0"><i class="fas fa-plus"></i> Add question</a>
             <a href="questions?sort=desc&type=date" class="bg-blue-300 text-gray-800 p-2 mr-2 rounded shadow hover:bg-blue-400 mb-4 sm:mb-0"><i class="fas fa-arrow-up"></i>Date</a>
-            <a href="questions?sort=asc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Date</a>
-            <a href="questions?sort=desc&type=points" class="bg-blue-300 text-gray-800 p-2 mr-2 rounded shadow hover:bg-blue-400"><i class="fas fa-arrow-up"></i> Rank</a>
-            <a href="questions?sort=asc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow"><i class="fas fa-arrow-down"></i> Rank</a>
+            <a href="questions?sort=asc&type=date" class="bg-blue-300 p-2 mr-2 rounded shadow hover:bg-blue-400 mb-4 sm:mb-0"><i class="fas fa-arrow-down"></i> Date</a>
+            <a href="questions?sort=desc&type=points" class="bg-blue-300 text-gray-800 p-2 mr-2 rounded shadow hover:bg-blue-400 mb-4 sm:mb-0"><i class="fas fa-arrow-up"></i> Rank</a>
+            <a href="questions?sort=asc&type=points" class="bg-blue-300 p-2 mr-2 rounded shadow hover:bg-blue-400"><i class="fas fa-arrow-down"></i> Rank</a>
         </div>
     </div>
     

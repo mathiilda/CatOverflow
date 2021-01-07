@@ -26,7 +26,7 @@
             </div>
             <div class="ml-8">
                 <p class="text-sm"> <?= MarkdownExtra::defaultTransform($i->comment) ?>
-                <a class="border-b-2 border-blue-300" href="../profile?user=<?= $i->author ?>"> - <?= $i->author ?></a>
+                    <a class="border-b-2 border-blue-300" href="../profile?user=<?= $i->author ?>"> - <?= $i->author ?></a>
                 </p>
             </div>
         </div>

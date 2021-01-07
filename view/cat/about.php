@@ -1,8 +1,8 @@
-<div class="w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow md:w-7/12 flex flex-row">
-    <div class="w-1/3 p-8 rounded-l-lg border-r-2 border-gray-200">
+<div class="w-11/12 lg:w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow flex flex-row p-4 sm:p-8">
+    <div class="w-1/3 pr-8 rounded-l-lg border-r-2 border-gray-200 block hidden md:block ">
         <img src="img/winston2.png" alt="">
     </div>
-    <div class="w-2/3 p-8">
+    <div class="w-full md:w-2/3 pl-8">
         <h4 class="text-2xl">About this webpage</h4>
         <p class="mb-6" >This webpage is made as the final project in the course ramverk1 at BTH. It is meant to be a somewhat copy of Stackoverflow but with another theme. Since I'm a big fan of cats I choose that as my theme.</p>
 

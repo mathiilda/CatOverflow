@@ -38,11 +38,11 @@ class ProfileController implements ContainerInjectableInterface
         $email = $res->email;
         $points = $res->points;
 
-        $sql = "SELECT * FROM Questions WHERE author = ?";
+        $sql = "SELECT * FROM Questions WHERE author = ? ORDER BY date DESC";
 
-        $sqlQuestions = "SELECT * FROM Questions WHERE author = ? ORDER BY date ASC LIMIT 3;";
-        $sqlAnswers = "SELECT * FROM Answers WHERE author = ? ORDER BY date ASC LIMIT 3;";
-        $sqlComments = "SELECT * FROM Comments WHERE author = ? ORDER BY date ASC LIMIT 3;";
+        $sqlQuestions = "SELECT * FROM Questions WHERE author = ? ORDER BY date DESC LIMIT 3;";
+        $sqlAnswers = "SELECT * FROM Answers WHERE author = ? ORDER BY date DESC LIMIT 3;";
+        $sqlComments = "SELECT * FROM Comments WHERE author = ? ORDER BY date DESC LIMIT 3;";
         $sqlVotes = "SELECT COUNT(*) AS v FROM Votes WHERE voter = ?;";
 
         $data = [

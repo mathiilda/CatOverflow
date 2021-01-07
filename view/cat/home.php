@@ -1,10 +1,10 @@
 <?php use \Michelf\MarkdownExtra; ?>
 <?php $count = 1; ?>
 
-<div class="w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow flex flex-row justify-between p-8">
+<div class="w-11/12 lg:w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow flex flex-col lg:flex-row justify-between p-4 sm:p-8">
     <!-- QUESTIONS -->
-    <div class="w-4/12">
-        <div class="shadow rounded p-4 mb-8">
+    <div class="w-full lg:w-4/12 flex flex-col flex-wrap sm:flex-row lg:flex-col">
+        <div class="shadow rounded p-4 mb-8 w-full md:w-1/2 lg:w-full">
             <h2 class="mb-3 border-b-2 border-blue-200 text-lg">Most popular tags:</h2>
             <div class="flex flex-col">
                 <?php foreach ($tags as $kt => $t) : ?>
@@ -14,7 +14,7 @@
                 <?php endforeach; ?>
             </div>
         </div>
-        <div class="shadow rounded p-4">
+        <div class="shadow rounded p-4 w-full md:w-1/2 lg:w-full mb-8">
             <h2 class="mb-3 border-b-2 border-blue-200 text-lg">Most active users:</h2>
             <div class="flex flex-col">
                 <?php foreach ($users as $u) : ?>
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="w-full ml-10">
+    <div class="w-full lg:ml-10">
         <h2 class="text-2xl mb-6">Latest questions:</h2>
         <?php foreach ($questions as $q) : ?>
             <!-- CONTROLLS -->
