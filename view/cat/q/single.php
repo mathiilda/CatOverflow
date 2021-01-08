@@ -1,5 +1,7 @@
 <?php use \Michelf\MarkdownExtra; ?>
 
+<?php $data["res"] = $data["res"][0] ?>
+
 <div class="w-11/12 lg:w-7/12 mt-10 mb-10 mr-auto ml-auto bg-gray-100 rounded shadow p-4 md:p-8 overflow-auto">
 
     <div class="w-full pb-8">

@@ -40,9 +40,9 @@ class ProfileController implements ContainerInjectableInterface
 
         $sql = "SELECT * FROM Questions WHERE author = ? ORDER BY date DESC";
 
-        $sqlQuestions = "SELECT * FROM Questions WHERE author = ? ORDER BY date DESC LIMIT 3;";
-        $sqlAnswers = "SELECT * FROM Answers WHERE author = ? ORDER BY date DESC LIMIT 3;";
-        $sqlComments = "SELECT * FROM Comments WHERE author = ? ORDER BY date DESC LIMIT 3;";
+        $sqlQuestions = "SELECT * FROM Questions WHERE author = ? ORDER BY date DESC;";
+        $sqlAnswers = "SELECT * FROM Answers WHERE author = ? ORDER BY date DESC;";
+        $sqlComments = "SELECT * FROM Comments WHERE author = ? ORDER BY date DESC;";
         $sqlVotes = "SELECT COUNT(*) AS v FROM Votes WHERE voter = ?;";
 
         $data = [

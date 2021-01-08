@@ -27,10 +27,10 @@ class QuestionsController implements ContainerInjectableInterface
     {
         $action = $_POST["action"];
 
-        if ($action == "upvote") {
-            $sql = "UPDATE Users SET points = points + 1 WHERE username = ?";
-        } else {
+        if ($action == "downvote") {
             $sql = "UPDATE Users SET points = points - 0.5 WHERE username = ?";
+        } else {
+            $sql = "UPDATE Users SET points = points + 1 WHERE username = ?";
         }
         $this->db->executeFetchAll($sql, [$user]);
     }
@@ -79,8 +79,11 @@ class QuestionsController implements ContainerInjectableInterface
     public function singleAction()
     {
         $id = $_GET["id"];
+        var_dump($id);
         $sql = "SELECT * FROM Questions WHERE id = ?;";
         $res = $this->db->executeFetchAll($sql, [$id]);
+
+        var_dump($res);
 
         $sort = $this->database->checkSort("Answers");
         $votes = "SELECT * FROM Votes WHERE questionId = ?;";
@@ -133,7 +136,7 @@ class QuestionsController implements ContainerInjectableInterface
         $tags = $this->database->createTagsString();
 
         $sql = "INSERT INTO Questions (question, author, title, tags, date) VALUES (?, ?, ?, ?, ?);";
-        $this->db->executeFetchAll($sql, [$question, $_SESSION["user"], $title, $tags, time()]);
+        $this->db->executeFetchAll($sql, [htmlentities($question), $_SESSION["user"], $title, $tags, time()]);
 
         $this->addPoints(1, $_SESSION["user"]);
 
@@ -192,7 +195,7 @@ class QuestionsController implements ContainerInjectableInterface
         $type = $_POST["type"];
         $id = $_POST["id"] ?? null;
         $questionId = $_POST["questionId"];
-        $text = $_POST["text"];
+        $text = htmlentities($_POST["text"]);
 
         if ($type == "Answer") {
             $sql = "INSERT INTO Answers (questionId, answer, author, date) VALUES (?, ?, ?, ?);";

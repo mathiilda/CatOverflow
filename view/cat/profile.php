@@ -17,7 +17,10 @@
                     <a href="profile?user=<?= $data["currentUser"] ?>&view=q">❓ Asked questions</a>
                 </p>
                 <p class="mb-4 pl-4 pr-4 md:pl-0 pr-0">
-                    <a href="profile?user=<?= $data["currentUser"] ?>&view=l">🐱‍💻 Latest activity</a>
+                    <a href="profile?user=<?= $data["currentUser"] ?>&view=a">🗨️ Answers</a>
+                </p>
+                <p class="mb-4 pl-4 pr-4 md:pl-0 pr-0">
+                    <a href="profile?user=<?= $data["currentUser"] ?>&view=c">💬 Comments</a>
                 </p>
             <?php if ($data["currentUser"] == $_SESSION["user"]) : ?>
                 <p class="mb-4 pl-4 pr-4 md:pl-0 pr-0">
@@ -39,16 +42,11 @@
         <?php if ($data["view"] == "q") : ?>
             <h4 class="text-2xl mb-6">Asked questions</h4>
             <?php include("q/incl/qMinimalContainer.php"); ?>
-        <?php else : ?>
-            <h4 class="text-2xl mb-6">Latest activity</h4>
-
-            <h6 class="text-xl mb-4"><i class="fas fa-paw text-blue-300"></i> Questions</h6>
-            <?php include("q/incl/lq.php") ?>
-
-            <h6 class="text-xl mb-4 pt-8"> <i class="fas fa-paw text-blue-300"></i> Answers</h6>
+        <?php elseif ($data["view"] == "a") :?>
+            <h6 class="text-2xl mb-6"> Answers</h6>
             <?php include("q/incl/la.php") ?>
-
-            <h6 class="text-xl mb-4 pt-8"><i class="fas fa-paw text-blue-300"></i> Comments</h6>
+        <?php elseif ($data["view"] == "c") :?>
+            <h6 class="text-2xl mb-6"> Comments </h6>
             <?php include("q/incl/lc.php") ?>
         <?php endif; ?>
     </div>
