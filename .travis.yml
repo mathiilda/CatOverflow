@@ -17,12 +17,12 @@ git:
     submodules: false
 
 before_script:
-    - sudo apt-get install sqlite3
     - make install check
+    - sudo apt-get install sqlite3
 
 script:
     - sqlite3 data/db.sqlite < sql/cat_sqlite.sql
-    - chmod 777 data
+    - chmod -R 777 data
     - make test
 
 env:
