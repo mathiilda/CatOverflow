@@ -19,7 +19,7 @@ git:
 before_script:
     - mkdir data
     - chmod 777 data
-    - sqlite3 data/db.sqlite
+    - mkdir data/db.sqlite
     - chmod 666 data/db.sqlite
     - sqlite3 data/db.sqlite < sql/cat_sqlite.sql
     - make install check
