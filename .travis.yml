@@ -18,6 +18,7 @@ git:
 
 before_script:
     - make install check
+    - sqlite3 data/db.sqlite < sql/cat_sqlite.sql
 
 script:
     - make test
