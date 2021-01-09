@@ -42,6 +42,7 @@ class ProfileControllerTest extends TestCase
      */
     public function testEditAction()
     {
+        $_POST["email"] = "email";
         $this->controller->initialize();
         $res = $this->controller->editAction();
         $this->assertInstanceOf(ResponseUtility::class, $res);

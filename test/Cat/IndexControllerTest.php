@@ -54,7 +54,7 @@ class IndexControllerTest extends TestCase
     public function testSignUpInAction()
     {
         $_POST["action"] = "Sign in";
-        $_POST["pass"] = "pass";
+        $_POST["pass"] = "password";
         $_POST["user"] = "user";
 
         $this->controller->initialize();
@@ -68,7 +68,7 @@ class IndexControllerTest extends TestCase
     public function testSignUpIn2Action()
     {
         $_POST["action"] = "Sign up";
-        $_POST["pass"] = "pass";
+        $_POST["pass"] = "password";
         $_POST["user"] = "user";
         $_POST["email"] = "email";
 
