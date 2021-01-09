@@ -16,14 +16,7 @@ class QuestionsController implements ContainerInjectableInterface
     private $db = "not active";
     private $database;
 
-    // NU BLIR DET FÖR MÅNGA POÄNG!!!
-    // private function addPoints($points, $user)
-    // {
-    //     $sql = "UPDATE Users SET points = points + ? WHERE username = ?";
-    //     $this->db->executeFetchAll($sql, [$points, $user]);
-    // }
-
-    private function addPoints($points, $user)
+    private function addPoints($user)
     {
         $action = $_POST["action"];
 
@@ -82,6 +75,10 @@ class QuestionsController implements ContainerInjectableInterface
         $sql = "SELECT * FROM Questions WHERE id = ?;";
         $res = $this->db->executeFetchAll($sql, [$id]);
 
+        if ($res == []) {
+            return $this->di->response->redirect("questions");
+        }
+
         $sort = $this->database->checkSort("Answers");
         $votes = "SELECT * FROM Votes WHERE questionId = ?;";
         // $sqlAnswers = "SELECT * FROM Answers WHERE questionId = ?;";
@@ -135,7 +132,7 @@ class QuestionsController implements ContainerInjectableInterface
         $sql = "INSERT INTO Questions (question, author, title, tags, date) VALUES (?, ?, ?, ?, ?);";
         $this->db->executeFetchAll($sql, [htmlentities($question), $_SESSION["user"], $title, $tags, time()]);
 
-        $this->addPoints(1, $_SESSION["user"]);
+        $this->addPoints($_SESSION["user"]);
 
         return $this->di->response->redirect("questions?edit=true");
     }
@@ -209,7 +206,7 @@ class QuestionsController implements ContainerInjectableInterface
         }
 
         $this->db->executeFetchAll($sql, $sqlArr);
-        $this->addPoints(1, $_SESSION["user"]);
+        $this->addPoints($_SESSION["user"]);
 
         return $this->di->response->redirect("questions/single?id=" . $questionId);
     }
@@ -232,8 +229,8 @@ class QuestionsController implements ContainerInjectableInterface
         $this->db->executeFetchAll($update[0], $update[1]);
         $this->db->executeFetchAll($insert[0], $insert[1]);
 
-        $points = $this->db->executeFetchAll($update[3], $update[1]);
-        $this->addPoints($points[0]->points, $_POST["author"]);
+        // $points = $this->db->executeFetchAll($update[3], $update[1]);
+        $this->addPoints($_POST["author"]);
 
         return $this->di->response->redirect($update[2]);
     }

@@ -75,7 +75,6 @@ class DatabaseHandler
         $sql = "";
         $arr = [];
         $redirect = "";
-        $sqlPoints = "";
 
         if ($type == "question") {
             if ($action == "upvote") {
@@ -86,7 +85,6 @@ class DatabaseHandler
 
             $arr = [$questionId];
             $redirect = "questions";
-            $sqlPoints = "SELECT points FROM Questions WHERE id = ?;";
         } else if ($type == "answer") {
             if ($action == "upvote") {
                 $sql = "UPDATE Answers SET points = points + 1 WHERE id = ?  AND questionId = ?;";
@@ -96,7 +94,6 @@ class DatabaseHandler
 
             $arr = [$answerId, $questionId];
             $redirect = "questions/single?id=" . $questionId;
-            $sqlPoints = "SELECT points FROM Answers WHERE id = ?  AND questionId = ?;";
         } else if ($type == "comment") {
             if ($answerId == "") {
                 if ($action == "upvote") {
@@ -106,7 +103,6 @@ class DatabaseHandler
                 }
 
                 $arr = [$commentId, $questionId];
-                $sqlPoints = "SELECT points FROM Comments WHERE id = ? AND questionId = ?;";
             } else {
                 if ($action == "upvote") {
                     $sql = "UPDATE Comments SET points = points + 1 WHERE id = ? AND questionId = ? AND answerId = ?;";
@@ -115,13 +111,12 @@ class DatabaseHandler
                 }
 
                 $arr = [$commentId, $questionId, $answerId];
-                $sqlPoints = "SELECT points FROM Comments WHERE id = ? AND questionId = ? AND answerId = ?;";
             }
 
             $redirect = "questions/single?id=" . $questionId;
         }
 
-        return [$sql, $arr, $redirect, $sqlPoints];
+        return [$sql, $arr, $redirect];
     }
 
     public function insertVote()
