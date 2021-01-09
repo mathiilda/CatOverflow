@@ -30,7 +30,10 @@
         </div>
     </div>
     <div class="w-full lg:ml-10">
-        <h2 class="text-2xl mb-6">Latest questions:</h2>
+        <div class="flex flex-row justify-between mb-6 flex-wrap">
+            <h2 class="text-2xl">Latest questions:</h2>
+            <a href="questions/add" class="bg-blue-300 text-gray-800 p-2 mr-2 rounded shadow hover:bg-blue-400"><i class="fas fa-plus"></i> Add question</a>
+        </div>
         <?php foreach ($questions as $q) : ?>
             <!-- CONTROLLS -->
             <div class="rounded shadow p-8 flex flex-col sm:flex-row w-full mb-8">

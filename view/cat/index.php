@@ -28,7 +28,7 @@
         <form action="signUpIn" method="POST">
             <div>
                 <label for="">Username:</label><br>
-                <input name="user" class="border-solid border-blue-300 border-b-2 bg-gray-100 w-full" type="text" require><br><br>
+                <input name="user" class="border-solid border-blue-300 border-b-2 bg-gray-100 w-full" type="text" minlength="4" require><br><br>
             </div>
             <?php if ($data["signIn"] == false) : ?>
                 <div>
@@ -38,7 +38,7 @@
             <?php endif; ?>
             <div>
                 <label for="">Password:</label><br>
-                <input name="pass" class="border-solid border-blue-300 border-b-2 bg-gray-100 w-full" type="password" require><br><br>
+                <input name="pass" class="border-solid border-blue-300 border-b-2 bg-gray-100 w-full" type="password" minlength="6" require><br><br>
             </div><br>
 
             <?php if ($data["signIn"] == false) : ?>

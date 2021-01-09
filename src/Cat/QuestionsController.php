@@ -79,11 +79,8 @@ class QuestionsController implements ContainerInjectableInterface
     public function singleAction()
     {
         $id = $_GET["id"];
-        var_dump($id);
         $sql = "SELECT * FROM Questions WHERE id = ?;";
         $res = $this->db->executeFetchAll($sql, [$id]);
-
-        var_dump($res);
 
         $sort = $this->database->checkSort("Answers");
         $votes = "SELECT * FROM Votes WHERE questionId = ?;";
