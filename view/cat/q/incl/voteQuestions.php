@@ -3,6 +3,8 @@
     <input type="hidden" name="type" value="question">
     <input type="hidden" name="questionId" value="<?= htmlentities($q->id) ?>">
     <input type="hidden" name="author" value="<?= htmlentities($q->author) ?>">
+    <input type="hidden" name="typeSort" value="<?= htmlentities($_GET["type"] ?? "date") ?>">
+    <input type="hidden" name="sort" value="<?= htmlentities($_GET["sort"] ?? "asc") ?>">
 
     <?php
     $view = "";
@@ -22,7 +24,7 @@
 
     <?php if ($data["votes"] == []) : ?>
         <button type="submit">
-            <i title="Downvote" class="fas fa-paw text-gray-800 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
+            <i title="Upvote" class="fas fa-paw text-gray-800 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
         </button>
     <?php else : ?>
         <?php if ($view == "gray") : ?>
@@ -48,6 +50,8 @@
     <input type="hidden" name="type" value="question">
     <input type="hidden" name="questionId" value="<?= htmlentities($q->id) ?>">
     <input type="hidden" name="author" value="<?= htmlentities($q->author) ?>">
+    <input type="hidden" name="typeSort" value="<?= htmlentities($_GET["type"] ?? "date") ?>">
+    <input type="hidden" name="sort" value="<?= htmlentities($_GET["sort"] ?? "asc") ?>">
 
     <?php
     $view = "";

@@ -7,6 +7,8 @@
         <input type="hidden" name="questionId" value="<?= htmlentities($answer->questionId) ?>">
         <input type="hidden" name="answerId" value="<?= htmlentities($answer->id) ?>">
         <input type="hidden" name="author" value="<?= htmlentities($answer->author) ?>">
+        <input type="hidden" name="typeSort" value="<?= htmlentities($_GET["type"] ?? "date") ?>">
+        <input type="hidden" name="sort" value="<?= htmlentities($_GET["sort"] ?? "asc") ?>">
         <?php include("upVote.php") ?>
     </form>
     <p class="mt-1 mb-1"><?= htmlentities($answer->points) ?></p>
@@ -16,6 +18,8 @@
         <input type="hidden" name="questionId" value="<?= htmlentities($answer->questionId) ?>">
         <input type="hidden" name="answerId" value="<?= htmlentities($answer->id) ?>">
         <input type="hidden" name="author" value="<?= htmlentities($answer->author) ?>">
+        <input type="hidden" name="typeSort" value="<?= htmlentities($_GET["type"] ?? "date") ?>">
+        <input type="hidden" name="sort" value="<?= htmlentities($_GET["sort"] ?? "asc") ?>">
         <?php include("downVote.php") ?>
     </form>
     <?php if ($answer->accepted == 1) : ?>

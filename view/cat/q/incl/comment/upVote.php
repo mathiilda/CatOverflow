@@ -30,6 +30,6 @@ foreach ($data["votes"] as $vo) {
 
 <?php if ($data["votes"] == []) : ?>
     <button type="submit">
-        <i title="Downvote" class="fas fa-paw text-gray-800 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
+        <i title="Upvote" class="fas fa-paw text-gray-800 bg-blue-300 p-2 rounded shadow hover:bg-blue-400"></i>
     </button>
 <?php endif; ?>

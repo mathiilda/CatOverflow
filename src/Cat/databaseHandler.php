@@ -72,6 +72,9 @@ class DatabaseHandler
         $answerId = $_POST["answerId"] ?? null;
         $commentId = $_POST["commentId"] ?? null;
 
+        $sort = $_POST["sort"];
+        $typeSort = $_POST["typeSort"];
+
         $sql = "";
         $arr = [];
         $redirect = "";
@@ -84,7 +87,7 @@ class DatabaseHandler
             }
 
             $arr = [$questionId];
-            $redirect = "questions";
+            $redirect = "questions?sort=" . $sort . "&type=" . $typeSort;
         } else if ($type == "answer") {
             if ($action == "upvote") {
                 $sql = "UPDATE Answers SET points = points + 1 WHERE id = ?  AND questionId = ?;";
@@ -93,7 +96,7 @@ class DatabaseHandler
             }
 
             $arr = [$answerId, $questionId];
-            $redirect = "questions/single?id=" . $questionId;
+            $redirect = "questions/single?id=" . $questionId . "&sort=" . $sort . "&type=" . $typeSort;
         } else if ($type == "comment") {
             if ($answerId == "") {
                 if ($action == "upvote") {
@@ -113,7 +116,7 @@ class DatabaseHandler
                 $arr = [$commentId, $questionId, $answerId];
             }
 
-            $redirect = "questions/single?id=" . $questionId;
+            $redirect = "questions/single?id=" . $questionId . "&sort=" . $sort . "&type=" . $typeSort;
         }
 
         return [$sql, $arr, $redirect];
@@ -149,7 +152,7 @@ class DatabaseHandler
 
     public function checkSort($table)
     {
-        $sort = $_GET["sort"] ?? "desc";
+        $sort = $_GET["sort"] ?? "asc";
         $type = $_GET["type"] ?? "date";
 
         if ($table == "Questions") {
