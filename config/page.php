@@ -7,12 +7,12 @@
  */
 
 $url = strtok($_SERVER["REQUEST_URI"] ?? "/dbwebb-extra/ramverk1/me/kmom10/CatOverflow/htdocs/", '?');
-$urlLocal = "/dbwebb-extra/ramverk1/me/kmom10/CatOverflow/htdocs/";
-$urlLocalIndex = "/dbwebb-extra/ramverk1/me/kmom10/CatOverflow/htdocs/index";
-$urlServer = "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/CatOverflow/htdocs/";
-$urlServerIndex = "/~mabw19/dbwebb-kurser/ramverk1/me/kmom10/CatOverflow/htdocs/index";
 
-if ($url == $urlLocal || $url == $urlLocalIndex || $url == $urlServer || $url == $urlServerIndex) {
+$urlNoIndex = substr($url, -8);
+$urlIndex = substr($url, -13);
+$urlIndexSlash = substr($url, -14);
+
+if ($urlNoIndex == "/htdocs/" || $urlIndex == "/htdocs/index" || $urlIndexSlash == "/htdocs/index/") {
     return [
         "layout" => [
             "region" => "layout",
